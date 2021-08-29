@@ -1,0 +1,365 @@
+/*
+ * Intel ACPI Component Architecture
+ * AML/ASL+ Disassembler version 20200528 (64-bit version)
+ * Copyright (c) 2000 - 2020 Intel Corporation
+ * 
+ * Disassembling to symbolic ASL+ operators
+ *
+ * Disassembly of ./SSDT-7-PerfTune.aml, Mon Aug 23 21:16:16 2021
+ *
+ * Original Table Header:
+ *     Signature        "SSDT"
+ *     Length           0x000006DB (1755)
+ *     Revision         0x02
+ *     Checksum         0xBD
+ *     OEM ID           "Intel"
+ *     OEM Table ID     "PerfTune"
+ *     OEM Revision     0x00001000 (4096)
+ *     Compiler ID      "INTL"
+ *     Compiler Version 0x20160527 (538314023)
+ */
+DefinitionBlock ("", "SSDT", 2, "Intel", "PerfTune", 0x00001000)
+{
+    External (_SB_.PCI0.LPCB.H_EC.CFSP, UnknownObj)
+    External (_SB_.PCI0.LPCB.H_EC.DIM0, UnknownObj)
+    External (_SB_.PCI0.LPCB.H_EC.DIM1, UnknownObj)
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // 1 Arguments
+    External (ADBG, MethodObj)    // 1 Arguments
+    External (DDRF, UnknownObj)
+    External (ECON, IntObj)
+    External (PFTU, UnknownObj)
+    External (TSOD, IntObj)
+    External (XMPB, UnknownObj)
+    External (XSMI, UnknownObj)
+    External (XTUB, UnknownObj)
+    External (XTUS, UnknownObj)
+
+    Scope (\_SB)
+    {
+        Device (PTMD)
+        {
+            Name (_HID, EisaId ("INT3394") /* ACPI System Fan */)  // _HID: Hardware ID
+            Name (_CID, EisaId ("PNP0C02") /* PNP Motherboard Resources */)  // _CID: Compatible ID
+            Name (IVER, 0x00010000)
+            Name (SIZE, 0x0690)
+            Name (CIDB, 0x06C8)
+            Method (GACI, 0, NotSerialized)
+            {
+                Name (RPKG, Package (0x02){})
+                RPKG [Zero] = Zero
+                If ((XTUB != Zero))
+                {
+                    ADBG ("XTUB")
+                    ADBG (XTUB)
+                    ADBG ("XTUS")
+                    ADBG (XTUS)
+                    OperationRegion (XNVS, SystemMemory, XTUB, CIDB)
+                    Field (XNVS, ByteAcc, NoLock, Preserve)
+                    {
+                        XBUF,   13888
+                    }
+
+                    Name (TEMP, Buffer (XTUS){})
+                    TEMP = XBUF /* \_SB_.PTMD.GACI.XBUF */
+                    RPKG [One] = TEMP /* \_SB_.PTMD.GACI.TEMP */
+                }
+                Else
+                {
+                    ADBG ("XTUB ZERO")
+                    RPKG [One] = Zero
+                }
+
+                Return (RPKG) /* \_SB_.PTMD.GACI.RPKG */
+            }
+
+            Method (GDSV, 1, Serialized)
+            {
+                If ((Arg0 == 0x05))
+                {
+                    Return (Package (0x02)
+                    {
+                        Zero, 
+                        Buffer (0x60)
+                        {
+                            /* 0000 */  0x58, 0x02, 0x00, 0x00, 0x58, 0x02, 0x00, 0x00,  // X...X...
+                            /* 0008 */  0x4C, 0x04, 0x00, 0x00, 0x4C, 0x04, 0x00, 0x00,  // L...L...
+                            /* 0010 */  0xB0, 0x04, 0x00, 0x00, 0xB0, 0x04, 0x00, 0x00,  // ........
+                            /* 0018 */  0xE2, 0x04, 0x00, 0x00, 0xE2, 0x04, 0x00, 0x00,  // ........
+                            /* 0020 */  0x14, 0x05, 0x00, 0x00, 0x14, 0x05, 0x00, 0x00,  // ........
+                            /* 0028 */  0x46, 0x05, 0x00, 0x00, 0x46, 0x05, 0x00, 0x00,  // F...F...
+                            /* 0030 */  0x78, 0x05, 0x00, 0x00, 0x78, 0x05, 0x00, 0x00,  // x...x...
+                            /* 0038 */  0xAA, 0x05, 0x00, 0x00, 0xAA, 0x05, 0x00, 0x00,  // ........
+                            /* 0040 */  0xDC, 0x05, 0x00, 0x00, 0xDC, 0x05, 0x00, 0x00,  // ........
+                            /* 0048 */  0x0E, 0x06, 0x00, 0x00, 0x0E, 0x06, 0x00, 0x00,  // ........
+                            /* 0050 */  0x40, 0x06, 0x00, 0x00, 0x40, 0x06, 0x00, 0x00,  // @...@...
+                            /* 0058 */  0x72, 0x06, 0x00, 0x00, 0x72, 0x06, 0x00, 0x00   // r...r...
+                        }
+                    })
+                }
+
+                If ((Arg0 == 0x13))
+                {
+                    ADBG ("DDR MULT")
+                    Return (Package (0x02)
+                    {
+                        Zero, 
+                        Buffer (0x0190)
+                        {
+                            /* 0000 */  0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,  // ........
+                            /* 0008 */  0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,  // ........
+                            /* 0010 */  0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,  // ........
+                            /* 0018 */  0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00,  // ........
+                            /* 0020 */  0x0A, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00,  // ........
+                            /* 0028 */  0x0B, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00,  // ........
+                            /* 0030 */  0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,  // ........
+                            /* 0038 */  0x0D, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00,  // ........
+                            /* 0040 */  0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00,  // ........
+                            /* 0048 */  0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00,  // ........
+                            /* 0050 */  0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,  // ........
+                            /* 0058 */  0x11, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00,  // ........
+                            /* 0060 */  0x12, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00,  // ........
+                            /* 0068 */  0x13, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00,  // ........
+                            /* 0070 */  0x14, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,  // ........
+                            /* 0078 */  0x15, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00,  // ........
+                            /* 0080 */  0x16, 0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00,  // ........
+                            /* 0088 */  0x17, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00,  // ........
+                            /* 0090 */  0x18, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,  // ........
+                            /* 0098 */  0x19, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00,  // ........
+                            /* 00A0 */  0x1A, 0x00, 0x00, 0x00, 0x1A, 0x00, 0x00, 0x00,  // ........
+                            /* 00A8 */  0x1B, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x00, 0x00,  // ........
+                            /* 00B0 */  0x1C, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00,  // ........
+                            /* 00B8 */  0x1D, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00,  // ........
+                            /* 00C0 */  0x1E, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00,  // ........
+                            /* 00C8 */  0x1F, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00,  // ........
+                            /* 00D0 */  0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,  //  ... ...
+                            /* 00D8 */  0x21, 0x00, 0x00, 0x00, 0x21, 0x00, 0x00, 0x00,  // !...!...
+                            /* 00E0 */  0x22, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00, 0x00,  // "..."...
+                            /* 00E8 */  0x23, 0x00, 0x00, 0x00, 0x23, 0x00, 0x00, 0x00,  // #...#...
+                            /* 00F0 */  0x24, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,  // $...$...
+                            /* 00F8 */  0x25, 0x00, 0x00, 0x00, 0x25, 0x00, 0x00, 0x00,  // %...%...
+                            /* 0100 */  0x26, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00,  // &...&...
+                            /* 0108 */  0x27, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00,  // '...'...
+                            /* 0110 */  0x28, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00,  // (...(...
+                            /* 0118 */  0x29, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00,  // )...)...
+                            /* 0120 */  0x2A, 0x00, 0x00, 0x00, 0x2A, 0x00, 0x00, 0x00,  // *...*...
+                            /* 0128 */  0x2B, 0x00, 0x00, 0x00, 0x2B, 0x00, 0x00, 0x00,  // +...+...
+                            /* 0130 */  0x2C, 0x00, 0x00, 0x00, 0x2C, 0x00, 0x00, 0x00,  // ,...,...
+                            /* 0138 */  0x2D, 0x00, 0x00, 0x00, 0x2D, 0x00, 0x00, 0x00,  // -...-...
+                            /* 0140 */  0x2E, 0x00, 0x00, 0x00, 0x2E, 0x00, 0x00, 0x00,  // ........
+                            /* 0148 */  0x2F, 0x00, 0x00, 0x00, 0x2F, 0x00, 0x00, 0x00,  // /.../...
+                            /* 0150 */  0x30, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00,  // 0...0...
+                            /* 0158 */  0x31, 0x00, 0x00, 0x00, 0x31, 0x00, 0x00, 0x00,  // 1...1...
+                            /* 0160 */  0x32, 0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00,  // 2...2...
+                            /* 0168 */  0x33, 0x00, 0x00, 0x00, 0x33, 0x00, 0x00, 0x00,  // 3...3...
+                            /* 0170 */  0x34, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00,  // 4...4...
+                            /* 0178 */  0x35, 0x00, 0x00, 0x00, 0x35, 0x00, 0x00, 0x00,  // 5...5...
+                            /* 0180 */  0x36, 0x00, 0x00, 0x00, 0x36, 0x00, 0x00, 0x00,  // 6...6...
+                            /* 0188 */  0x37, 0x00, 0x00, 0x00, 0x37, 0x00, 0x00, 0x00   // 7...7...
+                        }
+                    })
+                }
+
+                If ((Arg0 == 0x0B))
+                {
+                    Return (Package (0x02)
+                    {
+                        Zero, 
+                        Buffer (0x98)
+                        {
+                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // ........
+                            /* 0008 */  0x05, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00,  // ........
+                            /* 0010 */  0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,  // ........
+                            /* 0018 */  0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,  // ........
+                            /* 0020 */  0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,  // ........
+                            /* 0028 */  0x0A, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00,  // ........
+                            /* 0030 */  0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,  // ........
+                            /* 0038 */  0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00,  // ........
+                            /* 0040 */  0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,  // ........
+                            /* 0048 */  0x12, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00,  // ........
+                            /* 0050 */  0x14, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,  // ........
+                            /* 0058 */  0x18, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,  // ........
+                            /* 0060 */  0x1C, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00,  // ........
+                            /* 0068 */  0x1E, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00,  // ........
+                            /* 0070 */  0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,  //  ... ...
+                            /* 0078 */  0x22, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00, 0x00,  // "..."...
+                            /* 0080 */  0x26, 0x00, 0x00, 0x00, 0x26, 0x00, 0x00, 0x00,  // &...&...
+                            /* 0088 */  0x28, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00,  // (...(...
+                            /* 0090 */  0x2C, 0x00, 0x00, 0x00, 0x2C, 0x00, 0x00, 0x00   // ,...,...
+                        }
+                    })
+                }
+
+                If ((Arg0 == 0x42))
+                {
+                    Return (Package (0x02)
+                    {
+                        Zero, 
+                        Buffer (0xC0)
+                        {
+                            /* 0000 */  0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,  // ........
+                            /* 0008 */  0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00,  // ........
+                            /* 0010 */  0x03, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00,  // ........
+                            /* 0018 */  0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,  // ........
+                            /* 0020 */  0x05, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00,  // ........
+                            /* 0028 */  0x06, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00,  // ........
+                            /* 0030 */  0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,  // ........
+                            /* 0038 */  0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,  // ........
+                            /* 0040 */  0x0A, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00,  // ........
+                            /* 0048 */  0x0C, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00,  // ........
+                            /* 0050 */  0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00,  // ........
+                            /* 0058 */  0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,  // ........
+                            /* 0060 */  0x14, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00,  // ........
+                            /* 0068 */  0x18, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,  // ........
+                            /* 0070 */  0x1C, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00,  // ........
+                            /* 0078 */  0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,  //  ... ...
+                            /* 0080 */  0x28, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00,  // (...(...
+                            /* 0088 */  0x30, 0x00, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00,  // 0...0...
+                            /* 0090 */  0x38, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00,  // 8...8...
+                            /* 0098 */  0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,  // @...@...
+                            /* 00A0 */  0x50, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00,  // P...P...
+                            /* 00A8 */  0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,  // `...`...
+                            /* 00B0 */  0x70, 0x00, 0x00, 0x00, 0x70, 0x00, 0x00, 0x00,  // p...p...
+                            /* 00B8 */  0x80, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00   // ........
+                        }
+                    })
+                }
+
+                If ((Arg0 == 0x49))
+                {
+                    Return (Package (0x02)
+                    {
+                        Zero, 
+                        Buffer (0x10)
+                        {
+                            /* 0000 */  0x00, 0x00, 0x00, 0x00, 0x85, 0x00, 0x00, 0x00,  // ........
+                            /* 0008 */  0x01, 0x00, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00   // ....d...
+                        }
+                    })
+                }
+
+                Return (Package (0x01)
+                {
+                    One
+                })
+            }
+
+            Method (GXDV, 1, Serialized)
+            {
+                If ((XMPB != Zero))
+                {
+                    OperationRegion (XMPN, SystemMemory, XMPB, SIZE)
+                    Field (XMPN, ByteAcc, NoLock, Preserve)
+                    {
+                        XMP1,   832, 
+                        XMP2,   832
+                    }
+
+                    If ((Arg0 == One))
+                    {
+                        Name (XP_1, Package (0x02){})
+                        XP_1 [Zero] = Zero
+                        XP_1 [One] = XMP1 /* \_SB_.PTMD.GXDV.XMP1 */
+                        Return (XP_1) /* \_SB_.PTMD.GXDV.XP_1 */
+                    }
+
+                    If ((Arg0 == 0x02))
+                    {
+                        Name (XP_2, Package (0x02){})
+                        XP_2 [Zero] = Zero
+                        XP_2 [One] = XMP2 /* \_SB_.PTMD.GXDV.XMP2 */
+                        Return (XP_2) /* \_SB_.PTMD.GXDV.XP_2 */
+                    }
+                }
+
+                Return (Package (0x01)
+                {
+                    One
+                })
+            }
+
+            Method (GSCV, 0, NotSerialized)
+            {
+                Return (PFTU) /* External reference */
+            }
+
+            Method (GSCB, 0, NotSerialized)
+            {
+                Return (XSMI) /* External reference */
+            }
+
+            Method (CDRD, 1, Serialized)
+            {
+                Return (Package (0x01)
+                {
+                    One
+                })
+            }
+
+            Method (CDWR, 2, Serialized)
+            {
+                Return (One)
+            }
+
+            Name (RPMV, Package (0x04)
+            {
+                One, 
+                0x07, 
+                Zero, 
+                Zero
+            })
+            Name (TMP1, Package (0x0C)
+            {
+                One, 
+                0x02, 
+                Zero, 
+                Zero, 
+                0x05, 
+                0x04, 
+                Zero, 
+                Zero, 
+                0x06, 
+                0x05, 
+                Zero, 
+                Zero
+            })
+            Name (TMP2, Package (0x08)
+            {
+                One, 
+                0x02, 
+                Zero, 
+                Zero, 
+                0x05, 
+                0x04, 
+                Zero, 
+                Zero
+            })
+            Name (TMP3, Package (0x04)
+            {
+                One, 
+                0x02, 
+                Zero, 
+                Zero
+            })
+            Method (FSDD, 0, NotSerialized)
+            {
+                If ((XTUS == Zero))
+                {
+                    Return (Zero)
+                }
+
+                If (\ECON)
+                {
+                    RPMV [0x02] = \_SB.PCI0.LPCB.H_EC.ECRD (RefOf (\_SB.PCI0.LPCB.H_EC.CFSP))
+                }
+
+                Return (RPMV) /* \_SB_.PTMD.RPMV */
+            }
+
+            Method (SDSP, 0, NotSerialized)
+            {
+                Return (0x0A)
+            }
+        }
+    }
+}
+
