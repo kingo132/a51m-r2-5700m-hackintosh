@@ -25,6 +25,9 @@ DGPU:                AMD RX57000M
   * May need to regenerate codec under linux
 * Cardreader
   * will study later
+* Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
+  * may be need to inject some device properties using original ioreg dump of iMac20,2 with rx5700
+  * I tried w5700x spoof and EFI bios injection, all failed, both of them will get a terrible 2000 Metal score
 * Haven't tested sleep function
   * Will work on this once all other problems are fixed
 
