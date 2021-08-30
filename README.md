@@ -25,9 +25,9 @@ DGPU:                AMD RX57000M
 * Haven't tested sleep function
   * Will work on this once all other problems are fixed
 
-# How to adjust the keyboard backlight brightness under Mac os
+# AlienFX for Mac
 
-I wrote a mac program to do this, you can test it here
+I wrote a mac program to adjust the keyboard backlight brightness under Mac os, you can test it here
 
 https://github.com/kingo132/a51m-r2-5700m-hackintosh/blob/main/alienfx-for-mac/testapps/testapps.zip
 
