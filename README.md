@@ -42,4 +42,4 @@ I will post this code once it finished.
 * https://www.reddit.com/r/hackintosh/comments/oml3un/alienware_area_51m_r2_with_rx_5700m_compatible/
 
 # Some information
-* The intergrated Intel graphic card can only work with external dp or typec monitor. Currently not work on mac os. Refer: https://www.reddit.com/r/Alienware/comments/fl8693/area_51m_with_rtx_2060_and_optimus/
+* The intergrated Intel graphic card can only work with the typec monitor. Currently not work on mac os. Refer: https://www.reddit.com/r/Alienware/comments/fl8693/area_51m_with_rtx_2060_and_optimus/
