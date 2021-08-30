@@ -1,3 +1,6 @@
+
+[![](https://img.shields.io/badge/Gitter%20Ice%20Lake-Chat-informational?style=flat&logo=gitter&logoColor=white&color=ed1965)](https://gitter.im/Alienware-hackintosh/community)
+
 # a51m-r2-5700m-hackintosh
 Hackintosh for alienware area 51m r2 with 5700m gpu, currently I'm running Big Sur 11.5.2
 
