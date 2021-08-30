@@ -15,7 +15,7 @@ DGPU:                AMD RX57000M
 # Everything works except
 
 * Internal display does not support brightness adjustment
-  * I need original iMac20,2 ioreg and DSDT dump to work out this issue
+  * I need original iMac20,2 ioreg and DSDT dump to work out this issue, and the one with rx5700 should be the best
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
