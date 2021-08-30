@@ -1,5 +1,5 @@
 # a51m-r2-5700m-hackintosh
-Hackintosh for a51m r2 with 5700m gpu
+Hackintosh for alienware area 51m r2 with 5700m gpu
 
 # The specification
 ```
@@ -9,7 +9,7 @@ Built-in Monitor:    1920x1080
 Touch Pad:           I2C HID Device
 Audio Adapter:       RealTek ALC215
 Wireless Adapter:    Changed to BCM94352Z
-Discrete:            AMD RX57000M
+DGPU:                AMD RX57000M
 ```
 
 # Everything works except
