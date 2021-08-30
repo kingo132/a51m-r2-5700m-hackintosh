@@ -46,3 +46,4 @@ I will post this code once it finished.
 
 # Some information
 * The intergrated Intel graphic card can only work with the typec monitor. Currently not work on mac os. Refer: https://www.reddit.com/r/Alienware/comments/fl8693/area_51m_with_rtx_2060_and_optimus/
+* About MUX chip: https://dortania.github.io/GPU-Buyers-Guide/misc/discrete-laptops.html#understanding-what-discrete-laptop-gpus-work
