@@ -1,5 +1,5 @@
 # a51m-r2-5700m-hackintosh
-Hackintosh for alienware area 51m r2 with 5700m gpu
+Hackintosh for alienware area 51m r2 with 5700m gpu, currently I'm running Big Sur 11.5.2
 
 # The specification
 ```
