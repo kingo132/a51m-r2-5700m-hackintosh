@@ -18,10 +18,9 @@ DGPU:                AMD RX57000M
 # Everything works except
 
 * Internal display does not support brightness adjustment
-  * I need original iMac20,2 ioreg and DSDT dump to work out this issue, and the one with rx5700 should be the best
+  * It's super difficult for me to fix this ...
 * Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
-  * may be need to inject some device properties using original ioreg dump of iMac20,2 with rx5700
-  * I tried w5700x spoof and EFI bios injection, all failed, both of them will get a terrible 2000 Metal score
+  * fixed!
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
