@@ -18,7 +18,7 @@ DGPU:                AMD RX57000M
 # Everything works except
 
 * Internal display does not support brightness adjustment
-  * It's super difficult for me to fix this ...
+  * fixed! (with some hacking method, may have some potential problem, haven't done much test.)
 * Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
   * fixed!
 * Trackpad not support guesture
