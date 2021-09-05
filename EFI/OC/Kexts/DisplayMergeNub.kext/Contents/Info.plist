@@ -49,7 +49,7 @@
 			<key>IOClass</key>
 			<string>DisplayMergeNub</string>
 			<key>IODisplayPrefsKey</key>
-			<string>IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/PEGP@0/IOPP/P2PD@0/IOPP/GFX0@0/AMDRadeonX6000_AmdRadeonControllerNavi10/ATY,RadeonFramebuffer@0/display0/AppleBacklightDisplay-6af-449d</string>
+			<string>IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/EGP0@0/IOPP/EGP1@0/IOPP/GFX0@0/AMDRadeonX6000_AmdRadeonControllerNavi10/ATY,Python@0/display0/AppleBacklightDisplay-6af-449d</string>
 			<key>IOProviderClass</key>
 			<string>AppleBacklightDisplay</string>
 			<key>IOProviderMergeProperties</key>
@@ -74,7 +74,7 @@
 				</data>
 				<key>IODisplayConnectFlags</key>
 				<data>
-				hEkAAA==
+				AAgAAA==
 				</data>
 				<key>IODisplayControllerID</key>
 				<data>
@@ -82,14 +82,14 @@
 				</data>
 				<key>IODisplayEDID</key>
 				<data>
-				AP///////wAGEBKgAAAAABwWAQS1MBt4Im+xp1VMniUM
+				AP///////wAGEAWwHqLnkxYdAQS1MBt4Im+xp1VMniUM
 				UFQAAAABAQEBAQEBAQEBAQEBAQEBzo+AtnA4iEAwIKUA
 				ftcQAAAaAAAA/ABpTWFjCiAgICAgICAgAAAA/gA1WUtU
-				SoBCMTczSEFOAAAAAAACQQ2eABEAAAsBCiAgAI0KRegT
-				AQAAAAEAAAAAAAAAYJNT5f5/AAAKAAAAAAAAAAAAAAAA
-				AAAA8I1T5f5/AACeRegTAQAAAAEAAAAAAAAAh83jEwEA
-				AAACAAAAAAAAAJCVU+X+fwAAiJVT5f5/AACYlVPl/n8A
-				AAAAAAAAAAAACAAAAAAAAAABAAAAAAAAAA==
+				SoBCMTczSEFOAAAAAAACQQ2eABEAAAsBCiAgAE/4////
+				/////wgAAAAAAAAAgMN/7f5/AAAYAAAAAAAAAIDDf+3+
+				fwAAIL5/7f5/AAAKlSYDAQAAAAEAAAAAAAAAiMN/7f5/
+				AAALAAAAAAAAAAAAAAAAAAAAIL5/7f5/AACelSYDAQAA
+				AAEAAAAAAAAAhx0iAwEAAAACAAAAAAAAAA==
 				</data>
 				<key>IODisplayFirmwareLevel</key>
 				<data>
@@ -100,7 +100,7 @@
 				AAICAA==
 				</data>
 				<key>IODisplayPrefsKey</key>
-				<string>IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/PEGP@0/IOPP/P2PD@0/IOPP/GFX0@0/AMDRadeonX6000_AmdRadeonControllerNavi10/ATY,RadeonFramebuffer@0/display0/AppleBacklightDisplay-610-b005</string>
+				<string>IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/EGP0@0/IOPP/EGP1@0/IOPP/GFX0@0/AMDRadeonX6000_AmdRadeonControllerNavi10/ATY,Python@0/display0/AppleBacklightDisplay-610-b005</string>
 			</dict>
 			<key>IgnoreDisplayPrefs</key>
 			<true/>
