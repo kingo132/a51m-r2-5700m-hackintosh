@@ -34,9 +34,7 @@ DGPU:                AMD RX57000M
 
 I wrote a mac program to adjust the keyboard backlight brightness under Mac os, you can test it here
 
-https://github.com/kingo132/a51m-r2-5700m-hackintosh/blob/main/alienfx-for-mac/testapps/testapps.zip
-
-I will post this code once it finished.
+https://github.com/kingo132/AlienFX-For-MacOS
 
 # Releated issue
 
