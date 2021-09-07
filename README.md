@@ -45,5 +45,5 @@ https://github.com/kingo132/AlienFX-For-MacOS
 * https://www.reddit.com/r/hackintosh/comments/oml3un/alienware_area_51m_r2_with_rx_5700m_compatible/
 
 # Some information
-~~* The intergrated Intel graphic card can only work with the typec monitor. Currently not work on mac os. Refer: https://www.reddit.com/r/Alienware/comments/fl8693/area_51m_with_rtx_2060_and_optimus/
-~~* About MUX chip: https://dortania.github.io/GPU-Buyers-Guide/misc/discrete-laptops.html#understanding-what-discrete-laptop-gpus-work
+* ~~The intergrated Intel graphic card can only work with the typec monitor. Currently not work on mac os. Refer: https://www.reddit.com/r/Alienware/comments/fl8693/area_51m_with_rtx_2060_and_optimus/
+* ~~About MUX chip: https://dortania.github.io/GPU-Buyers-Guide/misc/discrete-laptops.html#understanding-what-discrete-laptop-gpus-work
