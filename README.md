@@ -13,6 +13,7 @@ Touch Pad:           I2C HID Device
 Audio Adapter:       RealTek ALC215
 Wireless Adapter:    Changed to BCM94352Z
 DGPU:                AMD RX57000M
+Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 ```
 
 # Everything works except
@@ -26,7 +27,7 @@ DGPU:                AMD RX57000M
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
   * May need to regenerate codec under linux
 * Cardreader
-  * will study later
+  * Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Haven't tested sleep function
   * Will work on this once all other problems are fixed
 
