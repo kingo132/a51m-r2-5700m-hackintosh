@@ -27,7 +27,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
   * May need to regenerate codec under linux
 * Cardreader
-  * Use this driver: https://github.com/0xFireWolf/RealtekCardReader
+  * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Haven't tested sleep function
   * Will work on this once all other problems are fixed
 
