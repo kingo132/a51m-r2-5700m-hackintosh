@@ -25,7 +25,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
-  * May need to regenerate codec under linux
+  * Too difficult for me to fix, may need a lot of time to modify the code of AppleALC
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Haven't tested sleep function
