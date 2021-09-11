@@ -30,6 +30,8 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Haven't tested sleep function
   * Will work on this once all other problems are fixed
+* Eye tracking
+  * Won't work.
 
 # AlienFX for Mac
 
