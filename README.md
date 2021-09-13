@@ -23,13 +23,13 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
   * fixed! Modify the vBIOS using this guid ([Chinese Only](https://ngabbs.com/read.php?tid=23329199&rand=624)) and use that vBIOS to add ATY,bin_image property. Or you can just uncomment that property in my opencore config file to let it take effect. (Disabled by default for safty reason, because haven't done much test and I can't read GPU temperature under MacOS.)
 * Trackpad not support guesture
-  * May need to modify the code of voodooi2c
+  * May need to modify the code of voodooi2c, too difficult for me to fix.
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
   * Too difficult for me to fix, may need a lot of time to modify the code of AppleALC
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
-* Haven't tested sleep function
-  * Will work on this once all other problems are fixed
+* Sleep / Wake
+  * Seems not easy to fix.
 * Eye tracking
   * Won't work.
 
