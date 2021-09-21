@@ -19,7 +19,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 # Everything works except
 
 * Internal display does not support brightness adjustment
-  * fixed! Only warm boot from Windows will work, cold boot won't work. See my modified version of Whatevergreen for more detail: https://github.com/kingo132/WhateverGreen
+  * fixed! Only warm boot from Windows will work, cold boot won't work. See my modified version of Whatevergreen for more detail: https://github.com/acidanthera/WhateverGreen/pull/90
 * Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
   * fixed! Modify the vBIOS using this guid ([Chinese Only](https://ngabbs.com/read.php?tid=23329199&rand=624)) and use that vBIOS to add ATY,bin_image property. Or you can just uncomment that property in my opencore config file to let it take effect. (Disabled by default for safty reason, because haven't done much test and I can't read GPU temperature under MacOS.)
 * Trackpad not support guesture
