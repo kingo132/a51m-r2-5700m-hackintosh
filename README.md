@@ -29,7 +29,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Sleep / Wake
-  * Seems not easy to fix.
+  * Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.
 * Eye tracking
   * Won't work.
 
