@@ -39,6 +39,16 @@ I wrote a mac program to adjust the keyboard backlight brightness under Mac os, 
 
 https://github.com/kingo132/AlienFX-For-MacOS
 
+# Replace the built-in display to 4k@120hz
+
+I replaced the built-in display to B173ZAN06.1, which is 4k@120hz. And the stock dp cable (DC02C00JU00, 0.5mm gap 40 pin connector) is not compatible. It needs to be changed to DC02C00MY00, which has a 0.4mm gap 40 pin connector.
+
+And there's another panel, B173ZAN06.0, which is 4k@660hz, is capatible with the stock dp cable. There's no need to buy a new cable if you change to this panel.
+
+And there's some small issue with B173ZAN06.1.
+* First, the newest AMD driver will giltch in windows 10, you have to use the AMD driver come with dell which is an old version that can be downloaded in dell website.
+* Second, in mac os it can only get 4k@60.03hz, I don't know the reason, may be need to patch Apple AMD driver.
+
 # Releated issue
 
 * https://www.tonymacx86.com/threads/compatibility-alienware-area-51-i7-10700k-amd-radeon-tm-rx-5700m.308933/
