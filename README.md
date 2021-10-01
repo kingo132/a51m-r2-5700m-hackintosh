@@ -41,7 +41,7 @@ https://github.com/kingo132/AlienFX-For-MacOS
 
 # Unlock the performace of rx5700m in MacOS
 
-By default, this rx5700m can only get 20000 Geekbench Metal score in MacOS, compared to Windows it can get 50000+ score. Here is the step to unlock it's performance. No need to modify any thing. Just resave the vBIOS by RED BIOS EDITOR tool. After the modification, the score will be 60000, enough for the performance of this rx5700m under MacOS.
+By default, this rx5700m can only get 20000 Geekbench Metal score in MacOS, compared to Windows it can get 50000+ score. Here is the step to unlock it's performance. No need to modify any thing. Just resave the vBIOS using RED BIOS EDITOR tool. After the modification, the score will be 60000, enough for the performance of this rx5700m under MacOS.
 
 1. Dump the original vBIOS using a tool called amdvbflash.exe, save it to a51m.orig.rom.
 2. Download the RED BIOS EDITOR tools here: https://www.igorslab.de/en/red-bios-editor-and-morepowertool-adjust-and-optimize-your-vbios-and-even-more-stable-overclocking-navi-unlimited/3/
