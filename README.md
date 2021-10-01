@@ -21,7 +21,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Internal display does not support brightness adjustment
   * fixed! Only warm boot from Windows will work, cold boot won't work. See my modified version of Whatevergreen for more detail: https://github.com/acidanthera/WhateverGreen/pull/90
 * Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
-  * fixed! Modify the vBIOS using this guid ([Chinese Only](https://ngabbs.com/read.php?tid=23329199&rand=624)) and use that vBIOS to add ATY,bin_image property. Or you can just uncomment that property in my opencore config file to let it take effect. (Disabled by default for safty reason, because haven't done much test and I can't read GPU temperature under MacOS.)
+  * fixed! Modify the vBIOS using this tool ([RED BIOS EDITOR](https://www.igorslab.de/en/red-bios-editor-and-morepowertool-adjust-and-optimize-your-vbios-and-even-more-stable-overclocking-navi-unlimited/3/)) and use that vBIOS to add ATY,bin_image property. See [Unlock the performace of rx5700m in MacOS section](#unlock-the-performace-of-rx5700m-in-macos)
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c, too difficult for me to fix.
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
@@ -38,6 +38,24 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 I wrote a mac program to adjust the keyboard backlight brightness under Mac os, you can test it here
 
 https://github.com/kingo132/AlienFX-For-MacOS
+
+# Unlock the performace of rx5700m in MacOS
+
+By default, this rx5700m can only get 20000 Geekbench Metal score in MacOS, compared to Windows it can get 50000+ score. Here is the step to unlock it's performance. No need to modify any thing. Just resave the vBIOS by RED BIOS EDITOR tool. After the modification, the score will be 60000, enough for the performance of this rx5700m under MacOS.
+
+1. Dump the original vBIOS using a tool called amdvbflash.exe, save it to a51m.orig.rom.
+2. Download the RED BIOS EDITOR tools here: https://www.igorslab.de/en/red-bios-editor-and-morepowertool-adjust-and-optimize-your-vbios-and-even-more-stable-overclocking-navi-unlimited/3/
+3. Run MorePowerTool, open a51m.orig.rom, click save to save a mpt file a51m.orig.mpt
+4. Run Red BIOS Editor, open a51m.orig.rom, then load a51m.orig.mpt, then save to a51m.resave.rom
+5. run command "head -c 65536 a51m.resave.rom > a51m.resave.rom.64k" to get the first 64k of the rom
+6. run command "xxd -p a51m.resave.rom.64k | tr -d '\n' > a51m.resave.rom.64k.txt" to get the txt of the hex value of this 64k rom
+7. open a51m.resave.rom.64k.txt, copy all the content to ATY,bin_image
+
+Here is the binary compare of the original vBIOS rom and the resaved vBIOS rom.
+
+![image](https://user-images.githubusercontent.com/46492291/135636806-20596fd7-f66b-4ea6-8cdc-1a2807e9f9a4.png)
+
+As you can see, although we didn't modify anything when resave the vBIOS file using RED BIOS EDITOR, it still has some modifications. I don't know what it modified, if you know, please tell me. And anyway, the performance is unlocked.
 
 # Replace the built-in display to 4k@120hz
 
