@@ -51,7 +51,7 @@ By default, this rx5700m can only get 20000 Geekbench Metal score in MacOS, comp
 6. run command "xxd -p a51m.resave.rom.64k | tr -d '\n' > a51m.resave.rom.64k.txt" to get the txt of the hex value of this 64k rom
 7. open a51m.resave.rom.64k.txt, copy all the content to ATY,bin_image
 
-Here is the binary compare of the original vBIOS rom and the resaved vBIOS rom.
+Here is the binary comparation of the original vBIOS rom and the resaved vBIOS rom.
 
 ![image](https://user-images.githubusercontent.com/46492291/135636806-20596fd7-f66b-4ea6-8cdc-1a2807e9f9a4.png)
 
