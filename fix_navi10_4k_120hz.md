@@ -17,7 +17,7 @@ This is the EDID information of this panel.
 
 # Patch the AMD Navi10 driver
 
-After some studied the AMD driver kext AMDRadeonX6000Framebuffer.kext, I found there is a function AmdDalServices::validateDetailedTiming will return 3758097095 which is 0xE00002C7 when set 4k@120hz refresh rate (pixel clock is 1073610000, 1072.61 MHz). It means kIOReturnUnsupported in IOReturn.h.
+After I studied the AMD driver kext AMDRadeonX6000Framebuffer.kext, I found there is a function AmdDalServices::validateDetailedTiming will return 3758097095 which is 0xE00002C7 when set 4k@120hz refresh rate (pixel clock is 1073610000, 1072.61 MHz). It means kIOReturnUnsupported in IOReturn.h.
 
 ![image](https://user-images.githubusercontent.com/46492291/135754667-093f263b-c447-4ecd-84f7-8e0d6e1a6c07.png)
 
