@@ -65,7 +65,7 @@ And there's another panel, B173ZAN06.0, which is 4k@60hz, is capatible with the 
 
 And there's some small issue with B173ZAN06.1.
 * First, the newest AMD driver will giltch in windows 10, you have to use the AMD driver come with dell which is an old version that can be downloaded in dell website.
-* Second, in mac os it can only get 4k@60.03hz, I don't know the reason, may be need to patch Apple AMD driver. (Fixed, see [HERE](https://github.com/kingo132/a51m-r2-5700m-hackintosh/edit/main/fix_navi10_4k_120hz.md) for more detail.)
+* Second, in mac os it can only get 4k@60.03hz, I don't know the reason, may be need to patch Apple AMD driver. (Fixed, see [HERE](https://github.com/kingo132/a51m-r2-5700m-hackintosh/blob/main/fix_navi10_4k_120hz.md) for more detail.)
 
 # Releated issue
 
