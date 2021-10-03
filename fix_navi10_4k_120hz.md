@@ -41,7 +41,7 @@ If the link bandwidth set by 120hz refresh rate exceed this bandwidth, it will f
 
 ![image](https://user-images.githubusercontent.com/46492291/135755505-a2435eda-f915-4535-a448-5b02e742886e.png)
 
-After I studied this dc_link_bandwidth_kbps function, I found it may return two kinds of value. The first is 25920000 if fec is not enabled, and the second is 25142400 if fec should be enabled. Apparently, the second value will not support 4k@120hz. So I just patched this function using WhatEvergreen and let it always return 25142400. The patch code is something like this.
+After I studied this dc_link_bandwidth_kbps function, I found it may return two kinds of value. The first is 25920000 if fec is not enabled, and the second is 25142400 if fec should be enabled. Apparently, the second value will not support 4k@120hz. So I just patched this function using WhatEvergreen and let it always return 25920000. The patch code is something like this.
 
 ![image](https://user-images.githubusercontent.com/46492291/135755695-8b1257b3-b5c1-43cd-8cf6-c7fbe255d6ab.png)
 
