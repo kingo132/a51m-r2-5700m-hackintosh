@@ -1,4 +1,4 @@
-# Fix AMD navi10 deriver 4k@120hz problem
+# Fix AMD Radeon RX 5000 series deriver 4k@120hz problem
 
 I replaced the built-in screen from B173HAN04.4 which is 1080p@144hz to B173ZAN06.1 which is 4k@120hz. 
 
