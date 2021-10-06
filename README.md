@@ -28,6 +28,8 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
   * May need to execute some hda-ver command, but I don't know how to do it. See [Working on hda-verb section](#working-on-hda-verb)
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
+* Thunderbolt hotplug
+  * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
 * Sleep / Wake
   * Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.
 * Eye tracking
