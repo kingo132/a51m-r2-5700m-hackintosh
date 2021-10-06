@@ -25,7 +25,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c, too difficult for me to fix.
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
-  * Too difficult for me to fix, may need a lot of time to modify the code of AppleALC
+  * May need to execute some hda-ver command, but I don't know how to do it. See [Working on hda-verb section](#working-on-hda-verb)
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 * Sleep / Wake
@@ -68,6 +68,18 @@ And there's another panel, B173ZAN06.0, which is 4k@60hz, is capatible with the 
 And there's some small issue with B173ZAN06.1.
 * First, the newest AMD driver will giltch in windows 10, you have to use the AMD driver come with dell which is an old version that can be downloaded in dell website.
 * Second, in mac os it can only get 4k@60.03hz, I don't know the reason, may be need to patch Apple AMD driver. (Fixed, see [HERE](https://github.com/kingo132/a51m-r2-5700m-hackintosh/blob/main/fix_navi10_4k_120hz.md) for more detail.)
+
+# Working on hda-verb
+
+```
+# test command
+./hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x25
+./hda-verb 0x21 SET_UNSOLICITED_ENABLE 0x83
+```
+Related links
+
+* https://elitemacx86.com/threads/audio-distortion-when-using-headphones-on-laptops-clover-opencore.185/
+* https://www.tonymacx86.com/threads/guide-dell-xps-15-9560-4k-touch-1tb-ssd-32gb-ram-100-adobergb.224486/page-9#post-1539760
 
 # Releated issue
 
