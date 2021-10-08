@@ -18,22 +18,22 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 
 # Everything works except
 
-* Internal display does not support brightness adjustment
+- [x] Internal display does not support brightness adjustment
   * fixed! See my modified version of Whatevergreen for more detail: https://github.com/acidanthera/WhateverGreen/pull/90
-* Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
+- [x] Geekbench 5 Metal score only get 20000 under mac os, which compared to Windows 10 will get 50000
   * fixed! Modify the vBIOS using this tool ([RED BIOS EDITOR](https://www.igorslab.de/en/red-bios-editor-and-morepowertool-adjust-and-optimize-your-vbios-and-even-more-stable-overclocking-navi-unlimited/3/)) and use that vBIOS to add ATY,bin_image property. See [Unlock the performace of rx5700m in MacOS section](#unlock-the-performace-of-rx5700m-in-macos)
-* Trackpad not support guesture
+- [ ] Trackpad not support guesture
   * May need to modify the code of voodooi2c, too difficult for me to fix.
-* Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
+- [x] Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
   * Fixed. Swaped the positions of the headphone and speaker in pin config data, then when mac os auto select headphone, it is speaker. And use this kind of adapter to connect you headphone.
   ![image](https://user-images.githubusercontent.com/46492291/136552568-8a17c49b-2185-47d0-b085-ef00d7c1b2a4.png)
-* Cardreader
+- [x] Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
-* Thunderbolt hotplug
+- [ ] Thunderbolt hotplug
   * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
-* Sleep / Wake
+- [ ] Sleep / Wake
   * Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.
-* Eye tracking
+- [x] Eye tracking
   * Won't work.
 
 # AlienFX for Mac
