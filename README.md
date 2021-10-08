@@ -25,7 +25,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 * Trackpad not support guesture
   * May need to modify the code of voodooi2c, too difficult for me to fix.
 * Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
-  * Fixed. Swap the positions of the headphone and speaker in pin config data, then when mac os auto select headphone, it is speaker. And use this kind of adapter to connect you headphone.
+  * Fixed. Swaped the positions of the headphone and speaker in pin config data, then when mac os auto select headphone, it is speaker. And use this kind of adapter to connect you headphone.
   ![image](https://user-images.githubusercontent.com/46492291/136552568-8a17c49b-2185-47d0-b085-ef00d7c1b2a4.png)
 * Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
