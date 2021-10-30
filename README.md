@@ -1,6 +1,8 @@
 
 [![](https://img.shields.io/badge/Chat-Alienware%20Hackintosh-critical)](https://gitter.im/Alienware-hackintosh/community)
 
+WARNNING!!⚠⚠⚠ Mac OS Monterey will break the backlight patch. Because Monterey removed all the C style symbol in AMDRadeonX6000Framebuffer.kext. Stay at Big Sur if you want this patch. 
+
 # a51m-r2-5700m-hackintosh
 Hackintosh for alienware area 51m r2 with 5700m gpu, currently I'm running Big Sur 11.5.2
 
