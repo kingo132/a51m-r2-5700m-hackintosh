@@ -3,7 +3,7 @@
 
 # ChangeLog
 
-## 20220705
+### 20220705
 You can upgrade to Monterey now. You may, however, encounter OTA failure during the second step of updating with a boot error "ocb: starting image failed". Maybe it is due to the Secure boot option or the configuration of this EFI. I don't know the exact reason, and I just circumvent it by using another 10900k EFI and then switching back my one. So be careful if you are using OTA to update to Monterey. Anyway, fresh install Monterey looks fine.
 1. Added rx5700m GPU temperature sensor for iStat Menus
 2. Fixed Monterey backlight patch for rx5700m
