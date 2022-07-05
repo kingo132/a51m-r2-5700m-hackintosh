@@ -1,10 +1,16 @@
 
 [![](https://img.shields.io/badge/Chat-Alienware%20Hackintosh-critical)](https://gitter.im/Alienware-hackintosh/community)
 
-WARNNING!!⚠⚠⚠ Mac OS Monterey will break the backlight patch. Because Monterey removed all the C style symbol in AMDRadeonX6000Framebuffer.kext, it need to rewrite the patch to call by address instead of symbol. Stay at Big Sur if you want this patch. 
+# ChangeLog
+
+## 20220705
+You can upgrade to Monterey now. You may, however, encounter OTA failure during the second step of updating with a boot error "ocb: starting image failed". Maybe it is due to the Secure boot option or the configuration of this EFI. I don't know the exact reason, and I just circumvent it by using another 10900k EFI and then switching back my one. So be careful if you are using OTA to update to Monterey. Anyway, fresh install Monterey looks fine.
+1. Added rx5700m GPU temperature sensor for iStat Menus
+2. Fixed Monterey backlight patch for rx5700m
+3. Updated Opencore to 0.8.2
 
 # a51m-r2-5700m-hackintosh
-Hackintosh for alienware area 51m r2 with 5700m gpu, currently I'm running Big Sur 11.5.2
+Hackintosh for alienware area 51m r2 with 5700m gpu, support Bigsur & Monterey
 
 # The specification
 ```
