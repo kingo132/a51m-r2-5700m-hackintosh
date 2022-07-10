@@ -45,6 +45,14 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 - [x] Sleep / Wake
   * ~~Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.~~
   * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and waking up.
+  * Remember to set these pmset options to prevent other sleep problems. (Sugesstions come from [Opencore Sleep Guide](https://dortania.github.io/OpenCore-Post-Install/universal/sleep.html#preparations))
+```
+sudo pmset autopoweroff 0
+sudo pmset powernap 0
+sudo pmset standby 0
+sudo pmset proximitywake 0
+sudo pmset tcpkeepalive 0
+```
 - [x] Eye tracking
   * Won't work.
 
