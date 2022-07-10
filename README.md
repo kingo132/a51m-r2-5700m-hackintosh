@@ -3,6 +3,9 @@
 
 # ChangeLog
 
+### 20220710
+1. Fixed sleep/wake issue
+
 ### 20220705
 You can upgrade to Monterey now. You may, however, encounter failure during the second step of the OTA updating process with a boot error "ocb: starting image failed". Maybe it is due to the Secure boot option or the configuration of this EFI. I don't know the exact reason, and I just circumvent it by using another 10900k EFI and then switching back to my one. So be careful if you are using OTA to update to the Monterey. Anyway, fresh install Monterey looks fine.
 1. Added rx5700m GPU temperature sensor for iStat Menus
@@ -39,8 +42,9 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 - [ ] Thunderbolt hotplug
   * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
-- [ ] Sleep / Wake
-  * Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.
+- [x] Sleep / Wake
+  * ~~ Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix. ~~
+  * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I have placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and wake up.
 - [x] Eye tracking
   * Won't work.
 
