@@ -43,8 +43,8 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 - [ ] Thunderbolt hotplug
   * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
 - [x] Sleep / Wake
-  * ~~ Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix. ~~
-  * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I have placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and wake up.
+  * ~~Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.~~
+  * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and waking up.
 - [x] Eye tracking
   * Won't work.
 
