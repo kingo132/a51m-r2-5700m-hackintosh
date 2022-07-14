@@ -4,7 +4,7 @@
 # ChangeLog
 
 ### 20220710
-1. Fixed sleep/wake issue
+1. Fixed sleep/wake issue. However, the built-in display will wake with black screen after a long sleep (maybe 10+ hours). Other components seem fine after the wake, and I can hear the system sound while typing on my keyboard. This black screen problem can not be recovered. The only choice is to do a force reboot. I have tried several ways to fix it but with no success.
 
 ### 20220705
 You can upgrade to Monterey now. You may, however, encounter failure during the second step of the OTA updating process with a boot error "ocb: starting image failed". Maybe it is due to the Secure boot option or the configuration of this EFI. I don't know the exact reason, and I just circumvent it by using another 10900k EFI and then switching back to my one. So be careful if you are using OTA to update to the Monterey. Anyway, fresh install Monterey looks fine.
