@@ -4,7 +4,7 @@
 # ChangeLog
 
 ### 20220710
-1. Fixed sleep/wake issue
+1. Fixed sleep/wake issue. However, the built-in display will wake with black screen after a long sleep (maybe 10+ hours). Other components seem fine after the wake, and I can hear the system sound while typing on my keyboard. This black screen problem can not be recovered. The only choice is to do a force reboot. I have tried several ways to fix it but with no success.
 
 ### 20220705
 You can upgrade to Monterey now. You may, however, encounter failure during the second step of the OTA updating process with a boot error "ocb: starting image failed". Maybe it is due to the Secure boot option or the configuration of this EFI. I don't know the exact reason, and I just circumvent it by using another 10900k EFI and then switching back to my one. So be careful if you are using OTA to update to the Monterey. Anyway, fresh install Monterey looks fine.
@@ -43,8 +43,16 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
 - [ ] Thunderbolt hotplug
   * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
 - [x] Sleep / Wake
-  * ~~ Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix. ~~
-  * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I have placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and wake up.
+  * ~~Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.~~
+  * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and waking up.
+  * Remember to set these pmset options to prevent other sleep problems. (Sugesstions come from [Opencore Sleep Guide](https://dortania.github.io/OpenCore-Post-Install/universal/sleep.html#preparations))
+```
+sudo pmset autopoweroff 0
+sudo pmset powernap 0
+sudo pmset standby 0
+sudo pmset proximitywake 0
+sudo pmset tcpkeepalive 0
+```
 - [x] Eye tracking
   * Won't work.
 
