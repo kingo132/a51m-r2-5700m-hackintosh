@@ -3,8 +3,12 @@
 
 # ChangeLog
 
+### 20220726
+1. Fixed Lid sleep/wake and Battery indicator problem. By switching SSDT-EC-USBX-DESKTOP.aml to SSDT-EC-USBX-LAPTOP.aml.
+2. Added boot chime of a Windows ME/2000 boot sound, which is my favorite.
+
 ### 20220724
-1. Fixed sleep/wake related issues.
+1. Fixed sleep/wake related issues. The built-in display wake black issue seems fixed, by SSDT-AOACWAKE.aml.
 
 ### 20220710
 1. Fixed sleep/wake issue. However, the built-in display will wake with black screen after a long sleep (maybe 10+ hours). Other components seem fine after the wake, and I can hear the system sound while typing on my keyboard. This black screen problem can not be recovered. The only choice is to do a force reboot. I have tried several ways to fix it but with no success.
