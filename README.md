@@ -4,7 +4,7 @@
 # ChangeLog
 
 ### 20220808
-Great thanks to @TechProgenitor. This Hackintosh is incredibly perfect now after his modification and advice.
+Great thanks to [@TechProgenitor](https://github.com/TechProgenitor). This Hackintosh is incredibly perfect now after his modification and advice.
 1. Fixed trackpad guesture problem.
 2. Fixed all the sound card related problem.
 
@@ -47,7 +47,7 @@ Card Reader:         Realtek RTS5260 PCI-E Card Reader, 10EC:5260, 1028:099B
   * fixed! Modify the vBIOS using this tool ([RED BIOS EDITOR](https://www.igorslab.de/en/red-bios-editor-and-morepowertool-adjust-and-optimize-your-vbios-and-even-more-stable-overclocking-navi-unlimited/3/)) and use that vBIOS to add ATY,bin_image property. See [Unlock the performace of rx5700m in MacOS section](#unlock-the-performace-of-rx5700m-in-macos)
 - [x] Trackpad not support guesture
   * ~~May need to modify the code of voodooi2c, too difficult for me to fix.~~
-  * Fixed! Thanks to @TechProgenitor for providing the information. https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/6
+  * Fixed! Thanks to [@TechProgenitor](https://github.com/TechProgenitor) for providing the information. https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/6
 - [x] Audio output will reset to headphone on every boot, and the quality of headphone output is terrible
   * ~~Fixed. Swaped the positions of the headphone and speaker in pin config data, then when mac os auto select headphone, it is speaker. And use this kind of adapter to connect you headphone.~~
   * Fixed. Thanks to @TechProgenitor for providing the information. https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/8 .
