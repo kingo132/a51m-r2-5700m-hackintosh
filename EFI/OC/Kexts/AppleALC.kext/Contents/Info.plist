@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>20G165</string>
+	<string>21G72</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.6.5</string>
+	<string>1.7.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -25,23 +25,23 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.6.5</string>
+	<string>1.7.5</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>13A233</string>
+	<string>13F100</string>
 	<key>DTPlatformName</key>
 	<string>macosx</string>
 	<key>DTPlatformVersion</key>
-	<string>11.3</string>
+	<string>12.3</string>
 	<key>DTSDKBuild</key>
-	<string>20E214</string>
+	<string>21E226</string>
 	<key>DTSDKName</key>
-	<string>macosx11.3</string>
+	<string>macosx12.3</string>
 	<key>DTXcode</key>
-	<string>1300</string>
+	<string>1341</string>
 	<key>DTXcodeBuild</key>
-	<string>13A233</string>
+	<string>13F100</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>ALCUserClientProvider</key>
@@ -70,14 +70,15 @@
 					<data>
 					AwAAAA==
 					</data>
+					<key>Codec</key>
+					<string>ALC215 for Alienware Area 51m R2</string>
 					<key>CodecID</key>
 					<integer>283902485</integer>
 					<key>ConfigData</key>
 					<data>
-					ATccAAE3HQABNx4QATcfQAF3HBABdx0BAXce
-					JwF3H5ACFxwgAhcdEAIXHhECFx8DAhcMAgHX
-					HC0B1x2ZAdceZwHXH0ABJxwwAScdAQEnHqAB
-					Jx+XAbccQAG3HRABtx6AAbcfAwG3DAI=
+					AXccEAF3HQEBdx4BAXcfkAIXHCACFx0QAhce
+					IQIXHwMCFwwCASccMAEnHQEBJx6gAScftwG3
+					HEABtx0QAbcegQG3HwMBtwwC
 					</data>
 					<key>FuncGroup</key>
 					<integer>1</integer>
