@@ -10,6 +10,8 @@ I just changed my built-in display from B173ZAN06.1 to B173ZAN06.6. This 06.6 is
 
 However, this 06.6 display has a problem in Windows. The AMD driver can not automatically recognize it well. By default, the AMD driver will crash after it detects this display. There are a few steps needed to adjust to using this display in Windows. First, you need to close the lid and use an external monitor, and then use this tool [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) to change the resolution information of this display in EDID in the registry. If you need detailed instructions, I will post them later.
 
+Plus, this 06.6 display uses 0.5mm gap 40 pin connector.
+
 ### 20220808
 Great thanks to [@TechProgenitor](https://github.com/TechProgenitor). This Hackintosh is incredibly perfect now after his modification and advice.
 1. Fixed trackpad guesture problem.
