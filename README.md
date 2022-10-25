@@ -3,6 +3,9 @@
 
 # ChangeLog
 
+### 20221025
+1. Support the backlight adjustment for Mac OS 13.0 Ventura
+
 ### 20220818
 Greetings everyone. This changelog is a piece of good news. However, this has nothing to do with software.
 
