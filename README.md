@@ -3,6 +3,9 @@
 
 # ChangeLog
 
+### 20230401
+1. Fixed the backlight problem for Mac OS 13.3 Ventura
+
 ### 20221025
 1. Support the backlight adjustment for Mac OS 13.0 Ventura
 
