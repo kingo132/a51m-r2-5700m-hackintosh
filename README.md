@@ -1,6 +1,8 @@
 
 [![](https://img.shields.io/badge/Chat-Alienware%20Hackintosh-critical)](https://gitter.im/Alienware-hackintosh/community)
 
+⚠️ DO NOT UPGRADE TO SONOMA. IT WILL BREAK THE WIFI.
+
 # ChangeLog
 
 ### 20230401
