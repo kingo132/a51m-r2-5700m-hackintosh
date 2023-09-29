@@ -3,6 +3,23 @@
 
 ⚠️ DO NOT UPGRADE TO SONOMA. IT WILL BREAK THE WIFI.
 
+* First of all, iMac 20,1 is not supported to use the root patch of Opencore Legacy Patcher. Therefore, the popular workaround on the internet does not work for this model. [OCLP Supported Models](https://dortania.github.io/OpenCore-Legacy-Patcher/MODELS.html)
+* Sonoma 1st beta supports only the following Broadcom chipsets: 14e4:43dc, 14e4:4464, 14e4:4488, 14e4:4425, 14e4:4433 and 14e4:4434, i.e. BCM4355 (802.11ac), BCM4364 (802.11ac), BCM4377b (802.11ac), BCM4378 (802.11ax), BCM4387 (802.11ax) and BCM4388 (802.11ax). Afaik, all those are provided as specific SOCs to Apple by Broadcom, i.e. chips to be soldered on Apple motherboards and not available on add-on mini-PCIe/M.2 cards.
+* https://wikidevi.wi-cat.ru/Broadcom
+* With regards to the wireless chipsets fitted to Intel Mac platforms supported by Sonoma, it's as follows:
+  * 2018 Mac mini8,1 -> BCM4364 (pci14e4,4464)
+  * 2018/2019 MacBookAir8,x -> BCM4355 (pci14e4,43dc)
+  * 2020 MacBookAir9,1 -> BCM4377b (pci14e4,4488)
+  * 2018/2019 MacBookPro15,x -> BCM4364 (pci14e4,4464)
+  * 2019/2020 MacBookPro16,x -> BCM4364 (pci14e4,4464)
+  * 2019 iMac19,x -> BCM4364 (pci14e4,4464)
+  * 2020 iMac20,x -> BCM4364 (pci14e4,4464)
+  * 2017 iMacPro1,1 -> BCM4355 (pci14e4,43dc)
+  * 2019 MacPro7,1 -> BCM4364 (pci14e4,4464)
+* Hope someone can make some kind of adapter to convert those soldered WiFi modules to the M.2/NGFF interface.
+  
+Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-issues-discussion/?do=findComment&comment=2807454
+
 # ChangeLog
 
 ### 20230401
