@@ -5,6 +5,11 @@ Many people are playing with high-resolution and refresh-rate portable DIY scree
 
 The key reason these screens have compatibility issues is that these screens are too avant-garde, and the operating system does not know the exact information to set the correct refresh rate. Therefore, we only need to manually modify or inject the EDID information to add or change this refresh rate information. 4k@60hz is almost supported by most of the OS by now. 4k@120hz and higher refresh rates have more problems. Hence, most of the time, manually adding the refresh rate information of 4k@120hz will fix the problem.
 
+Here is ChatGPT's answer to this question
+<img width="749" alt="image" src="https://github.com/kingo132/a51m-r2-5700m-hackintosh/assets/46492291/5d1ff7e6-bcb9-4798-b5ca-715ae20b920d">
+
+Some people use solder to remove and reprogram the EEPROM using custom-made hardware: https://www.reddit.com/r/thinkpad/comments/zd8yqs/thinkpad_p17_lcd_upgrade_to_uhd_4k/. This will permanently solve this problem; you don't need to modify the EDID of the OS anymore. Also, this will make the screen support Nintendo Switch or iPad, which is impossible using the EDID software modification method.
+
 ## For Windows
 To change the EDID information of the Windows system, you need Custom Resolution Utility (CRU), which can be downloaded from [here](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) or [cru-1.5.1.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14399003/cru-1.5.1.zip)
 
