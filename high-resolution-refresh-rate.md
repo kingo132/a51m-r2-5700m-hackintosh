@@ -42,6 +42,8 @@ base64 -i that-binary-edid.file
 
 For AUOB394 (B156ZAN05.1), I have made this file, and you can download it from here [DisplayVendorID-6af.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14399339/DisplayVendorID-6af.zip). Just unpack it and put it into that folder.
 
+Plus, here is the EDID file for B173ZAN06.1: [DisplayVendorID-6af.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14895556/DisplayVendorID-6af.zip)
+
 You can also use SwitchResX to modify EDID under Mac OS. Take AUOB394 as an example. Here is the configuration when using SwitchResX.
 
 <img width="652" alt="image" src="https://github.com/kingo132/a51m-r2-5700m-hackintosh/assets/46492291/c73ac6f9-e0e8-4bfb-9f0b-7f5c6b555289">
