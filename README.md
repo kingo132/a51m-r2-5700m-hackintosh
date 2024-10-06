@@ -22,6 +22,12 @@ Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-
 
 # ChangeLog
 
+### 20241006
+This update primarily lowered the power usage while idle and lowered the idle temperature. This particularly eased the left palm rest heat problem, which is pretty uncomfortable while typing on the built-in keyboard.
+1. I added CPUFriend.kext and CPUFriendDataProvider.kext to enable the 800Mhz speed step of my 10900K; previously, the lowest speed was 1200Mhz. This lowered the CPU's idle power consumption from 10 watts to 5 watts and lower.
+2. I found the built-in monitor's 4K 120hz refresh rate posed a huge pressure on the AMD rx5700m GPU. It results in the GPU running on the highest memory clock speed, which is 1400Mhz, which has an idle power consumption of 30 watts occupied by the GPU. When I set the refresh rate to 4K 60hz, the memory clock went back to normal, like 50Mhz when idle, and the power consumption was only 10 watts.
+After these two adjustments, the idle temperature lowered from 55 Celsius degree to 45 Celsius degree.
+
 ### 20230401
 1. Fixed the backlight problem for Mac OS 13.3 Ventura
 
