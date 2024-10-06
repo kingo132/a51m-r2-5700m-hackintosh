@@ -23,11 +23,11 @@ Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-
 # ChangeLog
 
 ### 20241006
-This update primarily lowered the power usage while idle and lowered the idle temperature. This particularly eased the left palm rest heat problem, which is pretty uncomfortable while typing on the built-in keyboard.
-1. I added CPUFriend.kext and CPUFriendDataProvider.kext to enable the 800Mhz speed step of my 10900K; previously, the lowest speed was 1200Mhz. This lowered the CPU's idle power consumption from 10 watts to 5 watts and lower, and lower the idle temperature from 55 Celsius degree to 45 Celsius degree as well.
-2. I found the built-in monitor's 4K 120hz refresh rate posed a huge pressure on the AMD rx5700m GPU. It results in the GPU running on the highest memory clock speed, which is 1400Mhz, this has an idle power consumption of 30 watts used by the GPU. When I set the refresh rate to 4K 60hz, the memory clock went back to normal, like 50Mhz when idle, and the power consumption was only 10 watts. This make the 5700m GPU lowered the idle temperature from 55 Celsius degree to 45 Celsius degree.
+This update mainly reduced power consumption and idle temperatures, which significantly helped with the heat issue on the left palm rest, making it more comfortable to type on the built-in keyboard.
+1. I added CPUFriend.kext and CPUFriendDataProvider.kext to enable the 800MHz speed step for my 10900K CPU; previously, the lowest speed was 1200MHz. This reduced the CPU's idle power consumption from 10 watts to as low as 5 watts, and brought the idle temperature down from 55°C to 45°C.
+2. I also found that the 4K 120Hz refresh rate of the built-in monitor was putting significant strain on the AMD RX5700m GPU, causing it to run at its maximum memory clock speed of 1400MHz, which led to an idle power consumption of 30 watts. When I set the refresh rate to 4K 60Hz, the memory clock dropped to a normal idle speed of around 50MHz, lowering the power consumption to just 10 watts. This reduced the GPU's idle temperature from 55°C to 45°C.
 
-After these two adjustments, the idle temperature of the whole computer lowered from 55 Celsius degree to 45 Celsius degree, and the built-in battery can last for about 2 hours for very light usage.
+After these two adjustments, the overall idle temperature of the system dropped from 55°C to 45°C, and the built-in battery now lasts about 2 hours under very light usage.
 ![QQ_1728231885842](https://github.com/user-attachments/assets/87567166-3bbb-45e5-b22b-f5e16dcd3ba6)
 
 ### 20230401
