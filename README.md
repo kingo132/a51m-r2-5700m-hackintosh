@@ -22,6 +22,42 @@ Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-
 
 # ChangeLog
 
+### 20241008
+1. Fixed bugs that caused macOS to get stuck at EB|#LOG:EXITBS:START during boot.
+2. Resolved the wireless and Bluetooth issues that I had previously overlooked.
+3. Cleaned up unnecessary dependencies.
+4. I was using 3200 MHz RAM, but my 10900K was running at 2933 MHz with this memory, leading to random kernel panics with page faults.
+```
+panic(cpu 4 caller 0xffffff801adb5293): Kernel trap at 0xffffff801ad57f32, type 14=page fault, registers:
+CR0: 0x0000000080010033, CR2: 0xffffff7fabad1fe0, CR3: 0x00000009228fa204, CR4: 0x00000000003626e0
+RAX: 0xffffff8038400000, RBX: 0xffffff7fabad1fc0, RCX: 0x03fffffe44813400, RDX: 0xffffff7f80000000
+RSP: 0xffffffd0d72f3c80, RBP: 0xffffffd0d72f3cb0, RSI: 0xffffff8038069aa8, RDI: 0x0000000000000000
+R8:  0x0000000000000000, R9:  0xffffff956761cba0, R10: 0x0000000000000003, R11: 0xffffffaa2fdfe400
+R12: 0xffffff8038069aa8, R13: 0xffffff8033c00000, R14: 0x000000000251e000, R15: 0xffffff90a04d0000
+RFL: 0x0000000000010286, RIP: 0xffffff801ad57f32, CS:  0x0000000000000008, SS:  0x0000000000000000
+Fault CR2: 0xffffff7fabad1fe0, Error code: 0x0000000000000000, Fault CPU: 0x4, PL: 1, VF: 5
+
+Panicked task 0xffffff9bc9cc4478: 21 threads: pid 2984: Google Chrome He
+Backtrace (CPU 4), panicked thread: 0xffffff9bcb2900c8, Frame : Return Address
+0xffffffd0d72f3660 : 0xffffff801ac70c7d mach_kernel : _handle_debugger_trap + 0x4ad
+0xffffffd0d72f36b0 : 0xffffff801adc52e4 mach_kernel : _kdp_i386_trap + 0x114
+0xffffffd0d72f36f0 : 0xffffff801adb4df7 mach_kernel : _kernel_trap + 0x3b7
+0xffffffd0d72f3740 : 0xffffff801ac11971 mach_kernel : _return_from_trap + 0xc1
+0xffffffd0d72f3760 : 0xffffff801ac70f5d mach_kernel : _DebuggerTrapWithState + 0x5d
+0xffffffd0d72f3850 : 0xffffff801ac70607 mach_kernel : _panic_trap_to_debugger + 0x1a7
+0xffffffd0d72f38b0 : 0xffffff801b3db8db mach_kernel : _panic + 0x84
+0xffffffd0d72f39a0 : 0xffffff801adb5293 mach_kernel : _sync_iss_to_iks + 0x2c3
+0xffffffd0d72f3b20 : 0xffffff801adb4f7d mach_kernel : _kernel_trap + 0x53d
+0xffffffd0d72f3b70 : 0xffffff801ac11971 mach_kernel : _return_from_trap + 0xc1
+0xffffffd0d72f3b90 : 0xffffff801ad57f32 mach_kernel : _vm_page_lookup + 0x242
+0xffffffd0d72f3cb0 : 0xffffff801ad0e994 mach_kernel : _vm_fault$XNU_INTERNAL + 0x734
+0xffffffd0d72f3ef0 : 0xffffff801adb55e8 mach_kernel : _user_trap + 0x2b8
+0xffffffd0d72f3fa0 : 0xffffff801ac1189f mach_kernel : _hndl_alltraps + 0x5f
+```
+To address this, I changed the memory clock profile from default to XMP1 in the BIOS settings, allowing the RAM to run at 3200 MHz. However, this prevented the CPU from entering C-states, raising its minimum frequency to 3600 MHz. As a result, power consumption increased, and the idle temperature rose by about 5 degrees. Despite the higher temperature, it’s worth it to fix the kernel panic rather than deal with constant crashes.
+<img width="280" alt="image" src="https://github.com/user-attachments/assets/42c96330-915d-45c5-bd1c-cf96adafeccf">
+I've ordered some native 2933 MHz memory. I’m not sure if it will resolve the page fault panic without needing to use the XMP profile.
+
 ### 20241006
 This update mainly reduced power consumption and idle temperatures, which significantly helped with the heat issue on the left palm rest, making it more comfortable to type on the built-in keyboard.
 1. I added CPUFriend.kext and CPUFriendDataProvider.kext to enable the 800MHz speed step for my 10900K CPU; previously, the lowest speed was 1200MHz. This reduced the CPU's idle power consumption from 10 watts to as low as 5 watts, and brought the idle temperature down from 55°C to 45°C.
