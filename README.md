@@ -56,6 +56,7 @@ Backtrace (CPU 4), panicked thread: 0xffffff9bcb2900c8, Frame : Return Address
 ```
 To address this, I changed the memory clock profile from default to XMP1 in the BIOS settings, allowing the RAM to run at 3200 MHz. However, this prevented the CPU from entering C-states, raising its minimum frequency to 3600 MHz. As a result, power consumption increased, and the idle temperature rose by about 5 degrees. Despite the higher temperature, it’s worth it to fix the kernel panic rather than deal with constant crashes.
 <img width="280" alt="image" src="https://github.com/user-attachments/assets/42c96330-915d-45c5-bd1c-cf96adafeccf">
+
 I've ordered some native 2933 MHz memory. I’m not sure if it will resolve the page fault panic without needing to use the XMP profile.
 
 ### 20241006
