@@ -24,7 +24,7 @@ Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-
 
 ### 20241008
 1. Fixed bugs that caused macOS to get stuck at EB|#LOG:EXITBS:START during boot.
-2. Resolved the wireless and Bluetooth issues that I had previously overlooked.
+2. Resolved the Wi-Fi and Bluetooth issues that I had previously overlooked.
 3. Cleaned up unnecessary dependencies.
 4. I was using 3200 MHz RAM, but my 10900K was running at 2933 MHz with this memory, leading to random kernel panics with page faults.
 ```
