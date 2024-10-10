@@ -1,8 +1,8 @@
 
 [![](https://img.shields.io/badge/Chat-Alienware%20Hackintosh-critical)](https://gitter.im/Alienware-hackintosh/community)
 
-# a51m-r2-5700m-hackintosh
-Hackintosh for alienware area 51m r2 with 5700m gpu, support Bigsur & Monterey
+# a51m-r2-5700m-Hackintosh
+Hackintosh for Alienware area 51m r2 with 5700m GPU, support Ventura
 
 # ChangeLog
 
