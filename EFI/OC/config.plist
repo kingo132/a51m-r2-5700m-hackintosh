@@ -554,12 +554,12 @@
 			<dict>
 				<key>#AAPL,ig-platform-id</key>
 				<data>AwDFmw==</data>
-				<key>#disable-gpu</key>
-				<integer>1</integer>
 				<key>AAPL,ig-platform-id</key>
 				<data>BwCbPg==</data>
 				<key>AAPL,slot-name</key>
 				<string>Slot-1</string>
+				<key>#disable-gpu</key>
+				<true/>
 				<key>framebuffer-fbmem</key>
 				<data>AACQAA==</data>
 				<key>framebuffer-patch-enable</key>
@@ -1389,11 +1389,11 @@
 		<key>Quirks</key>
 		<dict>
 			<key>AppleCpuPmCfgLock</key>
-			<true/>
+			<false/>
 			<key>AppleXcpmCfgLock</key>
 			<true/>
 			<key>AppleXcpmExtraMsrs</key>
-			<true/>
+			<false/>
 			<key>AppleXcpmForceBoost</key>
 			<false/>
 			<key>CustomSMBIOSGuid</key>
