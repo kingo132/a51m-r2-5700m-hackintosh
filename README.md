@@ -23,7 +23,7 @@ Reference: https://www.insanelymac.com/forum/topic/357087-macos-sonoma-wireless-
 # ChangeLog
 
 ### 20241008
-1. Fixed bugs that caused macOS to get stuck at EB|#LOG:EXITBS:START during boot.
+1. Fixed bugs that caused macOS to get stuck at EB|#LOG:EXITBS:START during boot (After the BIOS was updated to 1.29.0, this problem emerged).
 2. Resolved the Wi-Fi and Bluetooth issues that I had previously overlooked.
 3. Cleaned up unnecessary dependencies.
 4. I was using 3200 MHz RAM, but my 10900K was running at 2933 MHz with this memory, leading to random kernel panics with page faults.
@@ -54,10 +54,19 @@ Backtrace (CPU 4), panicked thread: 0xffffff9bcb2900c8, Frame : Return Address
 0xffffffd0d72f3ef0 : 0xffffff801adb55e8 mach_kernel : _user_trap + 0x2b8
 0xffffffd0d72f3fa0 : 0xffffff801ac1189f mach_kernel : _hndl_alltraps + 0x5f
 ```
-To address this, I changed the memory clock profile from default to XMP1 in the BIOS settings, allowing the RAM to run at 3200 MHz. However, this prevented the CPU from entering C-states, raising its minimum frequency to 3700 MHz. As a result, power consumption increased, and the idle temperature rose by about 5 degrees. Despite the higher temperature, it’s worth it to fix the kernel panic rather than deal with constant crashes.
+To address this, I changed the maximum memory clock speed to 3200 Mhz in the BIOS settings. I used RU.efi to change it. The offset of this setting is
+```
+VarStoreInfo (VarOffset/VarName): 0x132, VarStore: 0x16
+```
+The default value of this setting is 
+```
+2933, Value (16 bit): 0xB75 (default) {09 08 F7 06 31 01 75 0B}
+```
+Change it to this will make it 3200 Mhz.
+```
+3200, Value (16 bit): 0xC80 {09 08 F9 06 01 01 80 0C}
+```
 <img width="280" alt="image" src="https://github.com/user-attachments/assets/42c96330-915d-45c5-bd1c-cf96adafeccf">
-
-I've ordered some native 2933 MHz memory. I’m not sure if it will resolve the page fault panic without needing to use the XMP profile.
 
 ### 20241006
 This update mainly reduced power consumption and idle temperatures, which significantly helped with the heat issue on the left palm rest, making it more comfortable to type on the built-in keyboard.
