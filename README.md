@@ -6,6 +6,15 @@ Hackintosh for Alienware area 51m r2 with 5700m GPU, support Ventura
 
 # ChangeLog
 
+### 20250221
+1. Fixed the backlight of Sequoia
+2. Revise EFI to support Sequoia
+
+OCLP post-install patch is needed for WiFi to function. [OCLP](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Enable_Features/WiFi_Sonoma.md)
+
+How to extract the x6000 framebuffer text from SystemKernelExtensions.kc
+* [ghidra](https://github.com/NationalSecurityAgency/ghidra) -> import -> export
+
 ### 20241008
 1. Fixed bugs that caused macOS to get stuck at EB|#LOG:EXITBS:START during boot (After the BIOS was updated to 1.29.0, this problem emerged).
 2. Resolved the Wi-Fi and Bluetooth issues that I had previously overlooked.
