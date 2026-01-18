@@ -2,9 +2,13 @@
 [![](https://img.shields.io/badge/Chat-Alienware%20Hackintosh-critical)](https://gitter.im/Alienware-hackintosh/community)
 
 # a51m-r2-5700m-Hackintosh
-Hackintosh for Alienware area 51m r2 with 5700m GPU, support Ventura
+Hackintosh for Alienware area 51m r2 with 5700m GPU
 
 # ChangeLog
+
+### 20260118
+1. Support Tahoe
+2. Fix backlight for Tahoe
 
 ### 20250221
 1. Fixed the backlight of Sequoia
