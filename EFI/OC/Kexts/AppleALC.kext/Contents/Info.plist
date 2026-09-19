@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>25C56</string>
+	<string>24G517</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>KEXT</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.9.7</string>
+	<string>1.9.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -25,7 +25,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.9.7</string>
+	<string>1.9.8</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -76,9 +76,10 @@
 					<integer>283902485</integer>
 					<key>ConfigData</key>
 					<data>
-					AXccEAF3HQEBdx4BAXcfkAIXHCACFx0QAhce
-					IQIXHwMCFwwCASccMAEnHQEBJx6gAScftwG3
-					HEABtx0QAbcegQG3HwMBtwwC
+					AXccEAF3HQEBdx4XAXcfkAIXHCACFx0QAhce
+					IQIXHwMCFwwAAhcMAgEnHDABJx0BASceoAEn
+					H7cBtxxAAbcdEAG3HoEBtx8DAbcMAAG3DAIB
+					lxxQAZcdEQGXHv8Blx8B
 					</data>
 					<key>FuncGroup</key>
 					<integer>1</integer>
@@ -86,7 +87,34 @@
 					<integer>18</integer>
 					<key>WakeConfigData</key>
 					<data>
-					AhcMAgG3DAI=
+					AhcMAgG3DAIBlwcg
+					</data>
+					<key>WakeVerbReinit</key>
+					<true/>
+				</dict>
+				<dict>
+					<key>AFGLowPowerState</key>
+					<data>
+					AwAAAA==
+					</data>
+					<key>Codec</key>
+					<string>ALC215 for Alienware Area 51m R2</string>
+					<key>CodecID</key>
+					<integer>283902485</integer>
+					<key>ConfigData</key>
+					<data>
+					AXccEAF3HQEBdx4XAXcfkAIXHCACFx0QAhce
+					IQIXHwMCFwwAAhcMAgEnHDABJx0BASceoAEn
+					H7cBtxxAAbcdEAG3HoEBtx8DAbcMAAG3DAIB
+					lxxQAZcdEQGXHv8Blx8B
+					</data>
+					<key>FuncGroup</key>
+					<integer>1</integer>
+					<key>LayoutID</key>
+					<integer>28</integer>
+					<key>WakeConfigData</key>
+					<data>
+					AhcMAgG3DAIBlwcg
 					</data>
 					<key>WakeVerbReinit</key>
 					<true/>
