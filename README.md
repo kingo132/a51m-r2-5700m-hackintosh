@@ -6,7 +6,7 @@ Hackintosh for Alienware area 51m r2 with 5700m GPU
 
 # ChangeLog
 
-## 20260918
+### 20260918
 1. Move backlight pacth to a [seprate kext](https://github.com/kingo132/A51mR2Backlight). Disabled WEG backlight patch with applbkl=0.
 2. Add support for Tahoe 26.7.
 
