@@ -656,7 +656,7 @@
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/NVMeFix</string>
 				<key>MaxKernel</key>
@@ -692,7 +692,7 @@
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/VoodooPS2Mouse</string>
 				<key>MaxKernel</key>
@@ -728,7 +728,7 @@
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/VoodooPS2Trackpad</string>
 				<key>MaxKernel</key>
@@ -1248,7 +1248,7 @@
 				AA==
 				</data>
 				<key>boot-args</key>
-				<string>agdpmod=pikera -amfipassbeta swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm keepsyms=1</string>
+				<string>agdpmod=pikera -amfipassbeta swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm</string>
 				<key>csr-active-config</key>
 				<data>
 				AwgAAA==
@@ -1556,7 +1556,7 @@
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>LoadEarly</key>
 				<false/>
 				<key>Path</key>
@@ -1568,7 +1568,7 @@
 				<key>Comment</key>
 				<string></string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>LoadEarly</key>
 				<false/>
 				<key>Path</key>
