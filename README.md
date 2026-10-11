@@ -191,7 +191,7 @@ sudo pmset proximitywake 0
 sudo pmset tcpkeepalive 0
 ```
 - [x] Eye tracking
-  * Works with TobiiBridge, a native macOS app for the built-in Tobii eye tracker based on [tobiifree](https://github.com/Aetherall/tobiifree). It currently dims the display when you look away (enable `Physical smart dim`). Download v1.5 from [#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26#issuecomment-5927313360).
+  * Works with [TobiiBridge](https://github.com/kingo132/TobiiBridge), a native macOS menu-bar app for the built-in Tobii IS5 eye tracker, built on [tobiifree](https://github.com/Aetherall/tobiifree). It currently dims the physical backlight when you look away (enable `Physical smart dim`). Download it from [Releases](https://github.com/kingo132/TobiiBridge/releases).
 
 # AlienFX for Mac
 
