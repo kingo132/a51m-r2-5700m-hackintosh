@@ -6,6 +6,15 @@ Hackintosh for Alienware area 51m r2 with 5700m GPU
 
 # ChangeLog
 
+### 20261011
+1. Disabled `NVMeFix.kext`. This laptop handles NVMe APST/ASPM natively, and NVMeFix can interfere with it and cause rare kernel panics. Thanks to [@TechProgenitor](https://github.com/TechProgenitor) ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26)).
+2. Disabled `VoodooPS2Mouse.kext` and `VoodooPS2Trackpad.kext`. The trackpad is driven by VoodooI2C + VoodooRMI, and only the PS2 keyboard is needed.
+3. Disabled `OpenLinuxBoot.efi` and `ext4_x64.efi`. Re-enable them if you dual-boot Linux.
+4. Removed `keepsyms=1` from boot-args (`DisableLinkeditJettison` is already enabled).
+5. Added [setup_var.efi](https://github.com/datasone/setup_var.efi) (0.3.1) with two hidden boot entries, `Unlock CFG Lock` and `Restore CFG Lock` (press Space in the picker to show them). They write `CpuSetup:0x3E` (the `CFG Lock` option, verified in [a51mr2_biosdump.txt](a51mr2_biosdump.txt)) and reboot. `AppleXcpmCfgLock` stays enabled, so the EFI boots whether CFG Lock is locked or not. After unlocking, you may set it to `false`.
+6. Updated AppleALC to [@TechProgenitor](https://github.com/TechProgenitor)'s 2026-10-08 build (`REL-198-2026-10-08`). It fixes a kernel panic on wake that could happen when the iGPU is enabled. The deferred AFG recovery now only targets the Realtek HDEF codec ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26#issuecomment-6071931437)).
+7. Added [NaviAudioFixup](https://github.com/TechProgenitor/NaviAudioFixup) 1.0.0 for native HDMI audio from the RX 5700M. It is configured with `naviaudio-patch-enable = 1` and `naviaudio-port2-node = 3` on the dGPU.
+
 ### 20260918
 1. Move backlight pacth to a [seprate kext](https://github.com/kingo132/A51mR2Backlight). Disabled WEG backlight patch with applbkl=0.
 2. Add support for Tahoe 26.7.
@@ -167,8 +176,9 @@ alc-verb 0x21 SET_EAPD_BTLENABLE 0x2
   ![image](https://user-images.githubusercontent.com/46492291/136552568-8a17c49b-2185-47d0-b085-ef00d7c1b2a4.png)
 - [x] Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
-- [ ] Thunderbolt hotplug
-  * Haven't tested: https://github.com/RockJesus/macOS-IOElectrify
+- [x] Thunderbolt hotplug
+  * Works with only the `PCI-Thunderbolt` device property on `PciRoot(0x0)/Pci(0x1C,0x4)/Pci(0x0,0x0)` (already in config.plist), including warm/cold boot hotplug and sleep/wake. Tested by [@TechProgenitor](https://github.com/TechProgenitor) in [#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26).
+  * If the Thunderbolt controller doesn't show up in macOS, enable `GPIO3 Force Pwr` in the BIOS (with UMAF).
 - [x] Sleep / Wake
   * ~~Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.~~
   * Fixed! First, you need to disable "Firmware TPM" in BIOS to prevent "Sleep Wake failure in EFI" panic. Then, I placed SSDT-GPRW.aml in EFI to fix the instant wakeup problem. Currently, everything looks fine after sleep and waking up.
@@ -181,7 +191,7 @@ sudo pmset proximitywake 0
 sudo pmset tcpkeepalive 0
 ```
 - [x] Eye tracking
-  * Won't work.
+  * Works with [TobiiBridge](https://github.com/kingo132/TobiiBridge), a native macOS menu-bar app for the built-in Tobii IS5 eye tracker, built on [tobiifree](https://github.com/Aetherall/tobiifree). It currently dims the physical backlight when you look away (enable `Physical smart dim`). Download it from [Releases](https://github.com/kingo132/TobiiBridge/releases).
 
 # AlienFX for Mac
 
