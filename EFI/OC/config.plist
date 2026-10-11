@@ -1229,6 +1229,50 @@
 				<key>TextMode</key>
 				<true/>
 			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string>--reboot=auto CpuSetup:0x3E=0x00</string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
+				<string>setup_var.efi 0.3.1, CFG Lock is CpuSetup:0x3E per a51mr2_biosdump.txt</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<true/>
+				<key>Name</key>
+				<string>Unlock CFG Lock</string>
+				<key>Path</key>
+				<string>setup_var.efi</string>
+				<key>RealPath</key>
+				<true/>
+				<key>TextMode</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string>--reboot=auto CpuSetup:0x3E=0x01</string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
+				<string>setup_var.efi 0.3.1, CFG Lock is CpuSetup:0x3E per a51mr2_biosdump.txt</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<true/>
+				<key>Name</key>
+				<string>Restore CFG Lock</string>
+				<key>Path</key>
+				<string>setup_var.efi</string>
+				<key>RealPath</key>
+				<true/>
+				<key>TextMode</key>
+				<true/>
+			</dict>
 		</array>
 	</dict>
 	<key>NVRAM</key>
