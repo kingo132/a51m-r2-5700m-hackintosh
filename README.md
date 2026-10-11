@@ -12,6 +12,8 @@ Hackintosh for Alienware area 51m r2 with 5700m GPU
 3. Disabled `OpenLinuxBoot.efi` and `ext4_x64.efi`. Re-enable them if you dual-boot Linux.
 4. Removed `keepsyms=1` from boot-args (`DisableLinkeditJettison` is already enabled).
 5. Added [setup_var.efi](https://github.com/datasone/setup_var.efi) (0.3.1) with two hidden boot entries, `Unlock CFG Lock` and `Restore CFG Lock` (press Space in the picker to show them). They write `CpuSetup:0x3E` (the `CFG Lock` option, verified in [a51mr2_biosdump.txt](a51mr2_biosdump.txt)) and reboot. `AppleXcpmCfgLock` stays enabled, so the EFI boots whether CFG Lock is locked or not. After unlocking, you may set it to `false`.
+6. Updated AppleALC to [@TechProgenitor](https://github.com/TechProgenitor)'s 2026-10-08 build (`REL-198-2026-10-08`). It fixes a kernel panic on wake that could happen when the iGPU is enabled. The deferred AFG recovery now only targets the Realtek HDEF codec ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26#issuecomment-6071931437)).
+7. Added [NaviAudioFixup](https://github.com/TechProgenitor/NaviAudioFixup) 1.0.0 for native HDMI audio from the RX 5700M. It is configured with `naviaudio-patch-enable = 1` and `naviaudio-port2-node = 3` on the dGPU.
 
 ### 20260918
 1. Move backlight pacth to a [seprate kext](https://github.com/kingo132/A51mR2Backlight). Disabled WEG backlight patch with applbkl=0.
