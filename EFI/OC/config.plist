@@ -202,8 +202,6 @@
 				<string>5700M</string>
 				<key>ATY,FamilyName</key>
 				<string>Radeon RX</string>
-				<key>CFG_LINK_FIXED_MAP</key>
-				<integer>1</integer>
 				<key>hda-gfx</key>
 				<string>onboard-2</string>
 				<key>model</key>
@@ -212,6 +210,8 @@
 				<data>
 				BAAAAA==
 				</data>
+				<key>CFG_LINK_BUILT_IN_MAP</key>
+				<integer>1</integer>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
@@ -1314,7 +1314,7 @@
 				AA==
 				</data>
 				<key>boot-args</key>
-				<string>agdpmod=pikera -amfipassbeta swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm</string>
+				<string>agdpmod=pikera -amfipassbeta swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm -a51mbattime</string>
 				<key>csr-active-config</key>
 				<data>
 				AwgAAA==
@@ -1402,12 +1402,12 @@
 			<key>MaxBIOSVersion</key>
 			<false/>
 			<key>MLB</key>
-			<string>C02003403GU0000JA</string>
+			<string></string>
 			<key>ProcessorType</key>
 			<integer>4105</integer>
 			<key>ROM</key>
 			<data>
-			YYvabpZ/
+			AAAAAAAA
 			</data>
 			<key>SpoofVendor</key>
 			<true/>

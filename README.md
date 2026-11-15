@@ -4,7 +4,27 @@
 # a51m-r2-5700m-Hackintosh
 Hackintosh for Alienware area 51m r2 with 5700m GPU
 
+## Current maintenance status
+
+See the English [changelog](CHANGELOG.md), [release/rollback guide](docs/RELEASE.md)
+and [repair backlog ordered from lower to higher difficulty](TODO.md).
+The public EFI is an identity-free template: supply your own SMBIOS values
+locally and read the [privacy rules](docs/PRIVACY.md) before publishing anything.
+The historical checklist below does not mean every current Tahoe sleep/wake,
+brightness or Universal Control issue has been resolved.
+
 # ChangeLog
+
+### 20261115
+
+- Package deployed A51mR2Backlight 1.2.7 and A51m-specific SMCBatteryManager
+  1.3.8, with Built-In display mapping and battery time policy enabled.
+- Keep battery observation off in the release profile; no experimental display
+  policy, HUD or Universal Control candidate is installed by this update.
+- Record applied AirPlay/app mitigations and their actual acceptance limits.
+- Remove public machine identity and raw dump containers; add release
+  checksums, privacy checks and the prioritized remaining-work list.
+- Details and unresolved issues: [CHANGELOG.md](CHANGELOG.md), [TODO.md](TODO.md).
 
 ### 20261011
 1. Disabled `NVMeFix.kext`. This laptop handles NVMe APST/ASPM natively, and NVMeFix can interfere with it and cause rare kernel panics. Thanks to [@TechProgenitor](https://github.com/TechProgenitor) ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26)).

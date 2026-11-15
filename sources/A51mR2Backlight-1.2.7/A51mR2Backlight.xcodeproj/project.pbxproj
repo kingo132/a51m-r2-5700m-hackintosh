@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A51000000000000000000001 /* kern_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A51000000000000000000011 /* kern_start.cpp */; };
+		A51000000000000000000002 /* kern_backlight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A51000000000000000000012 /* kern_backlight.cpp */; };
+		A51000000000000000000003 /* kern_backlight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A51000000000000000000013 /* kern_backlight.hpp */; };
+		A51000000000000000000004 /* plugin_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A51000000000000000000014 /* plugin_start.cpp */; };
+		A51000000000000000000005 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A51000000000000000000015 /* libkmod.a */; };
+		A52000000000000000000001 /* kern_applebacklight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52000000000000000000011 /* kern_applebacklight.cpp */; };
+		A52000000000000000000002 /* kern_applebacklight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A52000000000000000000012 /* kern_applebacklight.hpp */; };
+		A52000000000000000000003 /* kern_applebacklight_data.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A52000000000000000000013 /* kern_applebacklight_data.hpp */; };
+		A52000000000000000000004 /* kern_radeonbacklight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A52000000000000000000014 /* kern_radeonbacklight.cpp */; };
+		A52000000000000000000005 /* kern_radeonbacklight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A52000000000000000000015 /* kern_radeonbacklight.hpp */; };
+		A52000000000000000000006 /* kern_radeon_signatures.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A52000000000000000000018 /* kern_radeon_signatures.hpp */; };
+		A53000000000000000000001 /* kern_diagnostics.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A53000000000000000000011 /* kern_diagnostics.hpp */; };
+        A54000000000000000000001 /* kern_tgcache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A54000000000000000000011; settings = {COMPILER_FLAGS = "-mno-sse -mno-sse2 -mno-mmx -mno-red-zone -fno-vectorize -fno-slp-vectorize"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A51000000000000000000020 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A51000000000000000000010 /* A51mR2Backlight.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A51mR2Backlight.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51000000000000000000011 /* kern_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_start.cpp; sourceTree = "<group>"; };
+		A51000000000000000000012 /* kern_backlight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_backlight.cpp; sourceTree = "<group>"; };
+		A51000000000000000000013 /* kern_backlight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_backlight.hpp; sourceTree = "<group>"; };
+		A51000000000000000000014 /* plugin_start.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = plugin_start.cpp; path = Lilu.kext/Contents/Resources/Library/plugin_start.cpp; sourceTree = SOURCE_ROOT; };
+		A51000000000000000000015 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = SOURCE_ROOT; };
+		A51000000000000000000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A51000000000000000000017 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A51000000000000000000018 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		A51000000000000000000019 /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
+		A52000000000000000000011 /* kern_applebacklight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_applebacklight.cpp; sourceTree = "<group>"; };
+		A52000000000000000000012 /* kern_applebacklight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_applebacklight.hpp; sourceTree = "<group>"; };
+		A52000000000000000000013 /* kern_applebacklight_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_applebacklight_data.hpp; sourceTree = "<group>"; };
+		A52000000000000000000014 /* kern_radeonbacklight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_radeonbacklight.cpp; sourceTree = "<group>"; };
+		A52000000000000000000015 /* kern_radeonbacklight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_radeonbacklight.hpp; sourceTree = "<group>"; };
+		A52000000000000000000016 /* DEBUGGING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Docs/DEBUGGING.md; sourceTree = SOURCE_ROOT; };
+		A52000000000000000000017 /* bootstrap.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = bootstrap.sh; sourceTree = "<group>"; };
+		A52000000000000000000018 /* kern_radeon_signatures.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_radeon_signatures.hpp; sourceTree = "<group>"; };
+		A53000000000000000000011 /* kern_diagnostics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_diagnostics.hpp; sourceTree = "<group>"; };
+        A54000000000000000000011 /* kern_tgcache.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kern_tgcache.cpp; sourceTree = "<group>"; };
+        A54000000000000000000012 /* kern_tgcache.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_tgcache.hpp; sourceTree = "<group>"; };
+        A54000000000000000000013 /* tg_cache_core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tg_cache_core.hpp; sourceTree = "<group>"; };
+        A54000000000000000000014 /* tg_cache_layout.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tg_cache_layout.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A51000000000000000000021 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51000000000000000000005 /* libkmod.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A51000000000000000000030 = {
+			isa = PBXGroup;
+			children = (
+				A51000000000000000000031 /* A51mR2Backlight */,
+				A51000000000000000000032 /* Dependencies */,
+				A51000000000000000000033 /* Docs */,
+				A52000000000000000000034 /* Scripts */,
+				A51000000000000000000034 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A51000000000000000000031 /* A51mR2Backlight */ = {
+			isa = PBXGroup;
+			children = (
+				A52000000000000000000031 /* Core */,
+				A52000000000000000000032 /* AppleBacklight */,
+				A52000000000000000000033 /* Radeon */,
+				A51000000000000000000016 /* Info.plist */,
+			);
+			path = A51mR2Backlight;
+			sourceTree = "<group>";
+		};
+		A52000000000000000000031 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A51000000000000000000011 /* kern_start.cpp */,
+				A51000000000000000000012 /* kern_backlight.cpp */,
+				A51000000000000000000013 /* kern_backlight.hpp */,
+				A53000000000000000000011 /* kern_diagnostics.hpp */,
+                A54000000000000000000011 /* kern_tgcache.cpp */,
+                A54000000000000000000012 /* kern_tgcache.hpp */,
+                A54000000000000000000013 /* tg_cache_core.hpp */,
+                A54000000000000000000014 /* tg_cache_layout.hpp */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		A52000000000000000000032 /* AppleBacklight */ = {
+			isa = PBXGroup;
+			children = (
+				A52000000000000000000011 /* kern_applebacklight.cpp */,
+				A52000000000000000000012 /* kern_applebacklight.hpp */,
+				A52000000000000000000013 /* kern_applebacklight_data.hpp */,
+			);
+			name = AppleBacklight;
+			sourceTree = "<group>";
+		};
+		A52000000000000000000033 /* Radeon */ = {
+			isa = PBXGroup;
+			children = (
+				A52000000000000000000014 /* kern_radeonbacklight.cpp */,
+				A52000000000000000000015 /* kern_radeonbacklight.hpp */,
+				A52000000000000000000018 /* kern_radeon_signatures.hpp */,
+			);
+			name = Radeon;
+			sourceTree = "<group>";
+		};
+		A51000000000000000000032 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				A51000000000000000000014 /* plugin_start.cpp */,
+				A51000000000000000000015 /* libkmod.a */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		A51000000000000000000033 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				A51000000000000000000017 /* README.md */,
+				A51000000000000000000018 /* LICENSE.txt */,
+				A51000000000000000000019 /* Changelog.md */,
+				A52000000000000000000016 /* DEBUGGING.md */,
+			);
+			name = Docs;
+			sourceTree = "<group>";
+		};
+		A52000000000000000000034 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A52000000000000000000017 /* bootstrap.sh */,
+			);
+			name = Scripts;
+			path = Scripts;
+			sourceTree = SOURCE_ROOT;
+		};
+		A51000000000000000000034 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A51000000000000000000010 /* A51mR2Backlight.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A51000000000000000000022 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51000000000000000000003 /* kern_backlight.hpp in Headers */,
+				A52000000000000000000002 /* kern_applebacklight.hpp in Headers */,
+				A52000000000000000000003 /* kern_applebacklight_data.hpp in Headers */,
+				A52000000000000000000005 /* kern_radeonbacklight.hpp in Headers */,
+				A52000000000000000000006 /* kern_radeon_signatures.hpp in Headers */,
+				A53000000000000000000001 /* kern_diagnostics.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A51000000000000000000040 /* A51mR2Backlight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A51000000000000000000061 /* Build configuration list for PBXNativeTarget "A51mR2Backlight" */;
+			buildPhases = (
+				A51000000000000000000023 /* Sources */,
+				A51000000000000000000021 /* Frameworks */,
+				A51000000000000000000022 /* Headers */,
+				A51000000000000000000024 /* Resources */,
+				A51000000000000000000020 /* CopyFiles */,
+				A51000000000000000000025 /* Archive */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = A51mR2Backlight;
+			productName = A51mR2Backlight;
+			productReference = A51000000000000000000010 /* A51mR2Backlight.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A51000000000000000000050 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1600;
+				ORGANIZATIONNAME = kingo132;
+			};
+			buildConfigurationList = A51000000000000000000060 /* Build configuration list for PBXProject "A51mR2Backlight" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A51000000000000000000030;
+			productRefGroup = A51000000000000000000034 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A51000000000000000000040 /* A51mR2Backlight */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A51000000000000000000024 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A51000000000000000000025 /* Archive */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Archive;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${TARGET_BUILD_DIR}\"\n\ndist=(\"$FULL_PRODUCT_NAME\")\nif [ -d \"$DWARF_DSYM_FILE_NAME\" ]; then dist+=(\"$DWARF_DSYM_FILE_NAME\"); fi\narchive=\"${PRODUCT_NAME}-${MODULE_VERSION}-$(echo $CONFIGURATION | tr /a-z/ /A-Z/).zip\"\nrm -rf *.zip\nzip -qry -FS \"${archive}\" \"${dist[@]}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A51000000000000000000023 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51000000000000000000001 /* kern_start.cpp in Sources */,
+				A51000000000000000000002 /* kern_backlight.cpp in Sources */,
+				A52000000000000000000001 /* kern_applebacklight.cpp in Sources */,
+				A52000000000000000000004 /* kern_radeonbacklight.cpp in Sources */,
+				A51000000000000000000004 /* plugin_start.cpp in Sources */,
+                A54000000000000000000001 /* kern_tgcache.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A51000000000000000000070 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A51000000000000000000071 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A51000000000000000000072 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = "$(MODULE_VERSION)";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FLOATING_POINT_LIBRARY_CALLS = NO;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MODULE_VERSION=$(MODULE_VERSION)",
+					"PRODUCT_NAME=$(PRODUCT_NAME)",
+					"APPLE_KEXT_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+				INFOPLIST_FILE = A51mR2Backlight/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MODULE_NAME = com.kingo132.A51mR2Backlight;
+				MODULE_START = "$(PRODUCT_NAME)_kern_start";
+				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
+				MODULE_VERSION = 1.2.7;
+				OTHER_CFLAGS = (
+					"-mmmx",
+					"-msse",
+					"-msse2",
+					"-msse3",
+					"-mssse3",
+					"-ftree-vectorize",
+					"-fno-non-call-exceptions",
+					"-fno-builtin",
+					"-fno-asynchronous-unwind-tables",
+					"-Wno-unknown-warning-option",
+					"-Wno-ossharedptr-misuse",
+					"-Wno-vla",
+				);
+				OTHER_LDFLAGS = "-static";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(MODULE_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		A51000000000000000000073 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CURRENT_PROJECT_VERSION = "$(MODULE_VERSION)";
+				DEAD_CODE_STRIPPING = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_ENABLE_FLOATING_POINT_LIBRARY_CALLS = NO;
+				GCC_ENABLE_KERNEL_DEVELOPMENT = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MODULE_VERSION=$(MODULE_VERSION)",
+					"PRODUCT_NAME=$(PRODUCT_NAME)",
+				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+				INFOPLIST_FILE = A51mR2Backlight/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
+				);
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MODULE_NAME = com.kingo132.A51mR2Backlight;
+				MODULE_START = "$(PRODUCT_NAME)_kern_start";
+				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
+				MODULE_VERSION = 1.2.7;
+				OTHER_CFLAGS = (
+					"-mmmx",
+					"-msse",
+					"-msse2",
+					"-msse3",
+					"-mssse3",
+					"-ftree-vectorize",
+					"-fno-non-call-exceptions",
+					"-fno-builtin",
+					"-fno-asynchronous-unwind-tables",
+					"-Wno-unknown-warning-option",
+					"-Wno-ossharedptr-misuse",
+					"-Wno-vla",
+				);
+				OTHER_LDFLAGS = "-static";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(MODULE_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_STYLE = "non-global";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A51000000000000000000060 /* Build configuration list for PBXProject "A51mR2Backlight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51000000000000000000070 /* Debug */,
+				A51000000000000000000071 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A51000000000000000000061 /* Build configuration list for PBXNativeTarget "A51mR2Backlight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51000000000000000000072 /* Debug */,
+				A51000000000000000000073 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A51000000000000000000050 /* Project object */;
+}

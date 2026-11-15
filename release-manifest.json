@@ -1,0 +1,41 @@
+{
+  "release": "2026.11.15",
+  "reference_os": "macOS 26.7.1 (25G241), x86_64",
+  "opencore_version": "1.0.7",
+  "battery_source_commit": "05fe28585a568d61246d6b43a1d982d1ef9c6120",
+  "battery_revision": "1.3.8-a51m1",
+  "backlight_source": "sources/A51mR2Backlight-1.2.7",
+  "backlight_upstream_base_commit": "fad1579acbdc60419e58e1cc255c97a21fb89107",
+  "backlight_project_reconstructed": true,
+  "dependencies": {
+    "Lilu": "1.7.2",
+    "MacKernelSDK_commit": "05094e5e88cec7caedbfb35e8449ed0db94bf95b"
+  },
+  "files_sha256": {
+    "EFI/OC/Kexts/A51mR2Backlight.kext/Contents/Info.plist": "4d61c16ad2c765b696f0060a82bc85998f690842508e2e93ec7bab48f35a0150",
+    "EFI/OC/Kexts/A51mR2Backlight.kext/Contents/MacOS/A51mR2Backlight": "b24da8e4cdd677d1f4f04cc7586a22b70605e3204aa87f4447979590e2849b07",
+    "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/Info.plist": "3a7c5ef88aa05514bf34812847eb7d9c9aaf05426e7cd558e414f6d62332f6b7",
+    "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/MacOS/SMCBatteryManager": "49e1ed79c0af3f4eb70bdb1d9ec229528afa7cedf4f97f136132f2fb704f58c6",
+    "EFI/OC/Kexts/SMCBatteryManager.kext/Contents/Resources/SSDT-BATC.dsl": "e66bbd57e5c6ef0ddbc3a6e51f68fe875d84709b73d4772e1c193269f2a89e4b",
+    "EFI/OC/config.plist": "e786ce9877c9e925a36f79b69956cef0f571f7c7df67bb37ff44355a9ef54f4e",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/Info.plist": "dddda8e593e75a626726fc4641b51adba56483ef84f4eb38e8a1780b3dbcfecf",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_applebacklight.cpp": "a1848c038a8cc74138fda8e8a6522ad46c15a93dd1da660031aee7e787d173b3",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_applebacklight.hpp": "5e5bcc780fe340029516acc7e9aba2386d46ae806fc4095a9d61b2ca7ebf0a51",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_applebacklight_data.hpp": "7c5a99c5de4fb6a089b7fdb206ebfb9aeb89f0b6c56f1d6cacfd5a56e74974a9",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_backlight.cpp": "f91506a889390634afb99cdc4fe9df53d87fa7482cbd504488ae016f3a5baf15",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_backlight.hpp": "e05b9bbc735072c329e44f06be269186af8796f89cb673f11b919688ef49d0ad",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_diagnostics.hpp": "b2585f66f55f819a88bb7feed58480b4effb85f90daa592ee86ffc162c6b517a",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_radeon_signatures.hpp": "2efd85e73d2615f33b7b26b0e0943c1caf652976d19877373644930d8ce93659",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_radeonbacklight.cpp": "a8bfd823dd720499d54c0bb37d3daadc211e34a15306059d5b10815834483e12",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_radeonbacklight.hpp": "c81c4ce45dd434eaa576dead72878abee9e1150d741be47d6f58467e425f4777",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_start.cpp": "5761cd06ae26c97564a8db537f63c4fd21d3952a6f80fb1b037d976b95cf5418",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_tgcache.cpp": "59f055ab4af150a359e6b7a1166b1fcc8ed86b6a6755a6f72ef45bd8e4d3f879",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/kern_tgcache.hpp": "1e81e90ecdcf866d9891a34ac20587767f979fd63b8cf3f17d98af07b517b43f",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/tg_cache_core.hpp": "06c498b9abf3fe10b3864067b0697b65ba39bbb66cabe11a3ec4f926a3cef49f",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight/tg_cache_layout.hpp": "9fcc11305faa664d50a1213a09053b14d8aee40fe03c56a34728df24b7fede5c",
+    "sources/A51mR2Backlight-1.2.7/A51mR2Backlight.xcodeproj/project.pbxproj": "7a8acee60c084ca64f704745a127d6e4f76ed4b6911294cc4dade5a8f9891975",
+    "sources/A51mR2Backlight-1.2.7/LICENSE.txt": "8f99f6082ccc808df2ece79446108bfd5c0c04da9ba81c5463568ced862a0b05",
+    "sources/A51mR2Backlight-1.2.7/README.md": "355630b8735fe1aaa42297d95d42449cd1576dfc72947a64a30d8156981e4f99",
+    "sources/A51mR2Backlight-1.2.7/Tests/tg_cache_test.cpp": "79f106a3795785a538f0c0f02ea9425b10d3d1dcbe51c5ac142b36a16018798e"
+  }
+}
