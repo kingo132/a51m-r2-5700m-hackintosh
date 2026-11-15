@@ -1,12 +1,6 @@
-# Historical Navi10 4K 120 Hz timing analysis
+# Fix AMD Radeon RX 5000 series deriver 4k@120hz problem
 
-This analysis describes an earlier driver implementation and panel configuration.
-Its function offsets and patch strategy are not part of the current release
-and must not be applied to another macOS build without matching the driver.
-
-
-The hardware configuration replaces the B173HAN04.4 1080p 144 Hz panel with
-a B173ZAN06.1 4K 120 Hz panel.
+I replaced the built-in screen from B173HAN04.4 which is 1080p@144hz to B173ZAN06.1 which is 4k@120hz.
 
 The stock eDP cable which is DC02C00JU00 and has an 0.5mm gap 40 pin connector should be replaced to DC02C00MY00 which has an 0.4mm gap 40 pin connector.
 
@@ -23,20 +17,15 @@ This is the EDID information of this panel.
 
 # Patch the AMD Navi10 driver
 
-In the analyzed AMDRadeonX6000Framebuffer build,
-AmdDalServices::validateDetailedTiming returns 3758097095 which is 0xE00002C7 when set 4k@120hz refresh rate (pixel clock is 1073610000, 1073.61 MHz). It means kIOReturnUnsupported in IOReturn.h.
+After I studied the AMD driver kext AMDRadeonX6000Framebuffer.kext, I found there is a function AmdDalServices::validateDetailedTiming will return 3758097095 which is 0xE00002C7 when set 4k@120hz refresh rate (pixel clock is 1073610000, 1073.61 MHz). It means kIOReturnUnsupported in IOReturn.h.
 
 ![image](https://user-images.githubusercontent.com/46492291/135754667-093f263b-c447-4ecd-84f7-8e0d6e1a6c07.png)
 
-Bypassing this validation permitted the mode in the investigated configuration.
-That observation narrows the rejection path; it does not establish that
-unconditional validation bypass is safe for other displays or driver builds.
+I patched this function to let it return true. Then the panel can run 4k@120hz witout problem. So the problem should lie in this function.
 
 ![image](https://user-images.githubusercontent.com/46492291/135754934-62fe2815-6b17-49c8-a365-c8791a6fe4db.png)
 
-The pseudocode calls dc_validate_stream and returns kIOReturnUnsupported when
-the result is not 1. The corresponding Linux AMD driver provides a useful
-comparison for the validation sequence.
+As you can see in the pseudocode of his function, it will call dc_validate_stream, and if the return value is not 1, it will return that kIOReturnUnsupported error. I checked this dc_validate_stream function in the AMD driver code of Linux kernel source.
 
 ![image](https://user-images.githubusercontent.com/46492291/135755030-37388032-6d91-4dee-b923-c1664fea3bcc.png)
 
@@ -52,13 +41,10 @@ If the link bandwidth set by 120hz refresh rate exceed this bandwidth, it will f
 
 ![image](https://user-images.githubusercontent.com/46492291/135755505-a2435eda-f915-4535-a448-5b02e742886e.png)
 
-The analyzed dc_link_bandwidth_kbps function returns two relevant values. The first is 25920000 if fec is not enabled, and the second is 25142400 if fec should be enabled. Apparently, the second value will not support 4k@120hz. The historical WhateverGreen modification forced a return value of 25920000.
-This alters bandwidth validation rather than increasing physical link capacity.
-The modification is not included in the current official-WEG release.
+After I studied this dc_link_bandwidth_kbps function, I found it may return two kinds of value. The first is 25920000 if fec is not enabled, and the second is 25142400 if fec should be enabled. Apparently, the second value will not support 4k@120hz. So I just patched this function using WhatEvergreen and let it always return 25920000. The patch code is something like this.
 
 ![image](https://user-images.githubusercontent.com/46492291/135755695-8b1257b3-b5c1-43cd-8cf6-c7fbe255d6ab.png)
 
-The historical configuration exposed 4K 120 Hz for the B173ZAN06.1 panel.
-Current mode availability depends on the driver, cable, link and timing data.
+Now I can turn on the 4k@120hz mode of this B173ZAN06.1 screen under MacOS.
 
 ![image](https://user-images.githubusercontent.com/46492291/135755730-96d8181c-5b25-42e8-8816-92e865876988.png)

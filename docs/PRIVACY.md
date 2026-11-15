@@ -24,7 +24,7 @@ python3 scripts/check_release.py
 
 For an additional local check, supply `--private-identifiers /outside/repo/ids.json`.
 The private JSON array accepts objects containing either `text` or `hex`.
-The checker looks for those values in proposed files, decoded plist values
+The checker looks for those values in candidate files, decoded plist values
 and common encodings. It prints paths/categories only, never matching values.
 Do not add that denylist to Git. This check complements review; it cannot
 recognize every unknown identifier in arbitrary binary formats or old history.

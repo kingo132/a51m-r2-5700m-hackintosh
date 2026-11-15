@@ -1,72 +1,87 @@
-# OCLP-free installation and recovery
+# OCLP-free Tahoe: installation, acceptance and rollback
 
-This EFI supplies Broadcom Wi-Fi and onboard audio on the original macOS Tahoe
-system volume. It replaces the legacy OCLP root-patch configuration; it does
-not revert an existing system patch merely by being copied to the EFI partition.
+The current reference is an Intel A51m R2 / RX 5700M on macOS 26.7.1
+(25G241). SimpleBCM 1.2.0 and SimpleHDA 1.0.1 were boot-checked on the matching
+original Apple system snapshot. This is not a guarantee for every OS update,
+Broadcom card or Continuity feature.
 
-## Driver configuration
+## What changed
 
-- Wi-Fi: use native IOSkywalkFamily/IO80211Family with Lilu, AirportBrcmFixup,
-  SimpleBCM and the AirPortBrcmNIC_Injector from AirportBrcmFixup, in that order.
-- Audio: retain the machine-specific AppleALC and NaviAudioFixup. Load SimpleHDA
-  after AppleALC and keep DisableLinkeditJettison enabled.
-- Exclude the separate legacy IOSkywalkFamily/IO80211Family injection, its
-  AirPortBrcmNIC, the IOSkywalkFamily block, AMFIPass and `-amfipassbeta`.
-- Retain RestrictEvents + `revpatch=sbvmm`, existing SIP policy and
-  SecureBootModel=Disabled. No iBridged or additional boot manager is required.
-- Use A51mR2Backlight for internal brightness with `applbkl=0`.
+- Wi-Fi: remove separate legacy IOSkywalkFamily, IO80211FamilyLegacy and its
+  AirPortBrcmNIC injection; remove the native IOSkywalk block. Use the system's
+  native IOSkywalkFamily/IO80211Family with SimpleBCM.
+- Preserve dependency order: Lilu, AirportBrcmFixup, SimpleBCM, then the
+  AirPortBrcmNIC_Injector inside AirportBrcmFixup.
+- Audio: keep the machine-specific AppleALC and NaviAudioFixup; put SimpleHDA
+  after AppleALC. Keep DisableLinkeditJettison enabled. The optional SimpleHDA
+  HAL package was not installed on the validated reference.
+- Remove AMFIPass and `-amfipassbeta` only as part of the clean-system switch.
+- Keep RestrictEvents + `revpatch=sbvmm`, existing SIP settings and
+  SecureBootModel=Disabled. Do not infer full security-policy restoration.
+- No iBridged, NootRX, alternative boot manager or periodic recovery daemon
+  is added. Independent A51mR2Backlight remains responsible for brightness.
 
-Upstream documentation: [SimpleBCM](https://github.com/laobamac/SimpleBCM/tree/v1.2.0)
-and [SimpleHDA](https://github.com/laobamac/SimpleHDA/tree/v1.0.1).
+Sources: [SimpleBCM](https://github.com/laobamac/SimpleBCM/tree/v1.2.0),
+[SimpleHDA](https://github.com/laobamac/SimpleHDA/tree/v1.0.1), and
+[the project discussion](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/27#issuecomment-6899475502).
+The commenter later reverted iBridged in their Python-framebuffer setup;
+that setup is not silently copied into the reference EFI.
 
-## Fresh installation
+## Existing root-patched installation
 
-1. Back up the existing EFI and supply the machine's own SMBIOS identity.
-2. Confirm the firmware requirements in [README.md](../README.md), including
-   CFG Lock. Validate the configuration using OpenCore 1.0.8 ocvalidate.
-3. Install an unmodified supported macOS system and boot through
-   `\EFI\OC\OpenCore.efi`. Do not apply legacy Broadcom or AppleHDA root patches.
+1. Back up the whole personalized EFI locally, the current working system
+   snapshot identity and the matching old configuration. Keep a boot/recovery
+   route that does not depend on the new configuration.
+2. Prepare the injector-based candidate in `EFI/OC.test`; give it its own
+   direct firmware/F12 entry targeting `\EFI\OC.test\OpenCore.efi`. Disable
+   LauncherOption for both entries so they do not rewrite the chosen firmware
+   order. A second folder alone does not create an F12 entry.
+3. Revert the old system root patches before first starting the new candidate.
+   The reference used the installed patcher's documented APFS rollback
+   mechanism: inspect the retained Apple snapshot read-only, verify the same
+   OS build, select the last sealed snapshot, and explicitly select/verify
+   that original snapshot when necessary. The current running system does
+   not change until the next boot.
+4. Only after the original snapshot is selected, boot the paired candidate.
+   Simply uninstalling the patcher application does **not** undo its system
+   patches. Do not enable SimpleHDA on top of another AppleHDA restoration.
+5. Confirm the actual running snapshot and loaded drivers. Test Wi-Fi network
+   traffic, audio, brightness, battery, Bluetooth and sleep/wake. Then promote
+   the accepted candidate to `EFI/OC`, fix LauncherPath for that directory,
+   compare all files, and move the redundant test copy to local backup.
+6. Remove obsolete patcher app/helper/automatic-patching services. Retain
+   private backups, not identity-bearing copies in this public repository.
 
-## Migration from an existing root-patched system
+A patched IO80211 framework can fail signature validation under the clean-system
+configuration. Keep the system snapshot and EFI transition paired to prevent
+critical-process startup failures.
 
-1. Preserve the complete working EFI, a data backup and a usable recovery path.
-   Record the system snapshot associated with the old configuration privately.
-2. Prepare the new EFI separately. A firmware/F12 entry can point directly to
-   its OpenCore.efi; an additional directory does not create an entry by itself.
-   Keep LauncherOption disabled when managing those entries through firmware.
-3. Revert the installed root patches through the patcher's supported recovery
-   mechanism. Verify that the retained original Apple snapshot matches the
-   installed OS build. If explicit snapshot selection is required, verify the
-   selected snapshot before proceeding.
-4. Restart using the new EFI with the original system snapshot. Do not combine
-   SimpleHDA with another AppleHDA restoration, or remove signature-compatibility
-   components while still booting a patched IO80211 framework.
-5. Verify system startup, wireless traffic, audio, brightness, battery,
-   Bluetooth and sleep/wake before making the new EFI the default.
-6. Remove the obsolete patcher application, helper and automatic-patching
-   services. Keep recovery copies outside the active EFI directory.
+If the original matching snapshot cannot be verified, do not guess or remove
+signature compatibility blindly. A supported reinstall over the existing
+system, with a verified data backup, is a separate recovery path.
 
-If the matching original system snapshot is unavailable, use a supported system
-reinstallation/recovery procedure with a verified data backup. Do not substitute
-an unrelated snapshot or assume that removing the patcher application restores
-the system volume.
+## Fresh installations and future updates
 
-## Rollback
+Use the personalized injector EFI with an unmodified supported macOS system;
+do not apply the old Wi-Fi/audio root patches. OTA, Continuity and peripheral compatibility depend on the operating-system
+version and complete hardware/account configuration.
+Future macOS versions may require injector updates or fresh compatibility work.
 
-Restore a **matching EFI and system state**. An old root-patch-dependent EFI
-with a clean system is not equivalent to the previous installation. Conversely,
-a patched system with the new AMFIPass-free configuration can fail framework
-signature validation during startup.
+## Rollback must match the system state
 
-Where the old system snapshot is retained, select that specific snapshot using
-the supported administrator/recovery procedure and restore its matching EFI.
-Snapshot UUIDs are machine-specific and must not be copied from another system.
-An alternate directory on the same EFI partition cannot recover a failed disk
-or a destroyed partition; retain an independent recovery route.
+An old root-patch-dependent EFI and a clean original system are not the same
+pair as the previous working installation. Restoring only the EFI does not
+restore a patched system snapshot; selecting a patched snapshot with the new
+AMFIPass-free configuration can reproduce the signature failure.
 
-## Updates and peripheral compatibility
+Retain both the old EFI and its matching system-snapshot identity privately.
+Where the old snapshot still exists, select that specific snapshot using the
+supported recovery/administrator procedure and boot the matching old EFI.
+Do not publish a reference machine's snapshot UUID or copy it onto another
+machine. Verify that snapshot retention and a recovery path actually exist;
+a second directory on the same EFI partition cannot recover a destroyed
+partition or failed disk.
 
-Keep the system volume original and update the EFI components as required for
-the target macOS version. New OS releases, Continuity integrations and peripheral
-combinations must be assessed against their hardware and software requirements.
-This release does not establish compatibility beyond the documented platform.
+The standard layout uses `EFI/OC`; remove obsolete firmware entries when
+retiring alternate configuration directories. No new boot
+manager is required.

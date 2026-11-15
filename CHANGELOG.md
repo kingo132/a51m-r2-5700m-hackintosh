@@ -1,58 +1,103 @@
 # Changelog
 
-## 2026.11.15 — OCLP-free Tahoe release
+## 2026-11-15 — OCLP-free EFI and corrected acceptance scope
 
-### Wi-Fi and audio
+- Replace separate legacy Skywalk/IO80211 Wi-Fi injection and AMFIPass with
+  SimpleBCM 1.2.0; remove the IOSkywalk block and `-amfipassbeta`.
+- Add SimpleHDA 1.0.1 after the preserved custom AppleALC. On the reference
+  machine, revert to the matching original Apple snapshot and uninstall
+  OCLP-Mod application/services; checking out this repository does neither.
+- Update OpenCore main application, its matching OpenRuntime/OpenCanopy/
+  AudioDxe/OpenShell components, official WEG, VirtualSMC/SMCProcessor and
+  AirportBrcmFixup. The existing fallback BOOTx64 bootstrap is retained and
+  separately identified; do not describe it as a new 1.0.8 binary.
+- Retain and package deployed SMCBatteryManager a51m7, SMCDellSensors a51m1
+  and SMCRadeonSensors a51m2 with source snapshots and artifact checksums.
+  Earlier documentation describing fixed 60 W/16 V fields applies to the
+  earlier battery build, not the current adapter-rating bridge.
+- Update LucyRTL8125Ethernet to 1.2.4 (Info.plist 1.2.400), including
+  the upstream correction for promiscuous-mode handling after wake.
+- Set AppleXcpmCfgLock=false for firmware with CFG Lock disabled. Keep the
+  quirk enabled on installations with locked or unknown firmware.
+- Preserve SIP and RestrictEvents/sbvmm; omit iBridged, extra boot managers
+  and redundant test configurations. The publication template clears identity
+  and Bluetooth controller state and disables the diagnostic battery observer.
+- Correct the Broadcom/Ventura advice, overly broad Thunderbolt statement
+  and unproven NVMeFix-panic attribution. Preserve existing unresolved display,
+  long-uptime, Continuity and calibration limitations.
 
-- Replace legacy IOSkywalkFamily/IO80211Family injection with SimpleBCM 1.2.0
-  and the system's native networking stack.
-- Add SimpleHDA 1.0.1 alongside the machine-specific AppleALC.
-- Remove AMFIPass, its boot argument and the IOSkywalkFamily block.
-- Preserve NaviAudioFixup, Bluetooth firmware support and RestrictEvents/sbvmm.
 
-### Updated components
+## 2026-11-15 — Tahoe display and battery maintenance
 
-- OpenCore main application, OpenRuntime, OpenCanopy, AudioDxe and OpenShell: 1.0.8.
-- WhateverGreen: official 1.7.1; standalone backlight support remains enabled.
-- VirtualSMC and SMCProcessor: 1.3.8.
-- AirportBrcmFixup: 2.2.1.
-- LucyRTL8125Ethernet: 1.2.4, including the upstream post-wake promiscuous-mode fix.
-- Preserve the compatible fallback bootstrap and document its provenance.
+This update packages fixes already deployed on the reference A51m R2. It does
+not claim that every sleep/wake or desktop-stutter problem is resolved.
 
-### Platform integration
+### EFI fixes
 
-- A51mR2Backlight 1.2.7: internal-panel TG/cache handling and PWM-state consistency.
-- SMCBatteryManager a51m7: battery-state policy, adapter-rating bridge and
-  validated per-input firmware reporting.
-- SMCDellSensors: activity-counter handling.
-- SMCRadeonSensors: A51m Navi telemetry integration.
-- Set AppleXcpmCfgLock=false for firmware configured with CFG Lock disabled.
-  Installations with locked/unknown firmware must keep the quirk enabled.
+- Update A51mR2Backlight from 1.2.1 to the deployed 1.2.7 Release binary.
+  Dynamically populate the internal display's TG cache from its native active
+  stream, invalidate owned state on mode changes, and retain native valid
+  values. No hardcoded TG number is introduced. Subsequent checks found the
+  internal native/cache values consistent and the former invalid-TG warning
+  absent.
+- Preserve U16.16 PWM precision, restrict Radeon backlight overrides to the
+  built-in panel, synchronize AMD's stored backlight registers after PWM
+  writes, and return the native post-restore value after panel initialization.
+  These address driver-level consistency defects; wake brightness drift and
+  the on-screen brightness indicator remain separate open issues.
+- Replace `CFG_LINK_FIXED_MAP` with `CFG_LINK_BUILT_IN_MAP` on the existing
+  dGPU path. This avoids the early synthetic/late real display-identity
+  transition implicated in displaypolicyd's startup abort. The abort did not
+  recur in subsequent boot checks; full lifecycle acceptance remains open.
+- Update SMCBatteryManager from 1.3.7 to the A51m-specific 1.3.8 build. This
+  includes upstream polling/notification fixes and the opt-in A51m time policy:
+  inappropriate states, invalid/zero rates and out-of-range estimates return
+  the standard unknown time rather than overflowing into plausible values.
+  Valid discharge estimates remain available; current is not clamped.
+- Enable `-a51mbattime` in the public profile. Keep `-a51mbatobserve` OFF by
+  default; it remains available for bounded fault investigation. The local
+  diagnostic machine may keep observation enabled independently.
 
-### Packaging and documentation
+### System and application fixes documented for reinstallation
 
-- Include public source snapshots, licenses and artifact checksums.
-- Exclude machine identities and diagnostic captures from the public EFI.
-- Document original-system migration and matching EFI/system rollback.
-- Correct the obsolete OCLP requirement, unconditional Thunderbolt support
-  statement and unproven NVMeFix-panic attribution.
-- Preserve documented display/lifecycle limitations; do not substitute guessed
-  battery measurements or introduce a resident recovery service.
+- AirPlay: disable root-scope `wirelessdisplay_enable_vtscaling` using a
+  framework-version-checked, one-key backup/restore tool. This avoids the
+  reproduced input-padding/AMD encoder-pool failure. Two actual peer-Mac
+  connect/disconnect cycles passed. It does not fix VPN endpoint selection.
+- Shottr: disable AlienFX's keyboard-triggered mouse-click suppression while
+  retaining keyboard lighting.
+- The old iStat 6 menu-bar application was temporarily replaced with Stats.
+  The owner subsequently chose the official iStat Menus 7 upgrade; use the
+  purchased version and restore the original layout locally. Do not publish
+  license codes or preference exports. This is not a claim that iStat caused
+  all stutter; version 7 needs its own uptime acceptance.
+- Disable BetterDisplay's F14/F15 alternative brightness keys and display
+  connection management. A wake comparison improved, but later fence timeouts
+  recurred; retain this as mitigation, not a complete WindowServer repair.
+- Remove the world-clock widget implicated by the notification-center
+  comparison. Underlying callback-lifetime defects are not claimed fixed.
 
-## 2026.10.11
+### Verification and privacy
 
-- Disable redundant PS/2 mouse/trackpad plugins and unused Linux boot drivers.
-- Retain VoodooI2C/VoodooRMI for the trackpad and PS/2 keyboard support.
-- Add firmware-specific CFG Lock setup tools.
-- Integrate the machine-specific AppleALC wake recovery and NaviAudioFixup.
-- Disable NVMeFix for the native NVMe configuration; subsequent evidence did
-  not establish the earlier suspected panic attribution.
+- Battery policy and observer were confirmed active after reboot. Retained
+  firmware/source/virtual-SMBus/system values agree during discharge; capacity
+  decreases are consistent with reported current. The previous 31 A reading
+  did not recur, so its cause is still open.
+- A 50% start / 80% stop BIOS charging policy explains AC-attached, not-charging
+  behavior above the stop threshold. It is not a battery-driver failure.
+- Audit iStat's battery fields against the registry and driver: 60 W adapter
+  power and 16 V cell voltage are compatibility placeholders, not measurements.
+  Cycle count and unsupported metadata remain open; see
+  [battery field accuracy](docs/BATTERY_FIELDS.md).
+- The reported shutdown was initiated manually and is excluded from the bug
+  backlog.
+- Sanitize all public PlatformInfo identity fields, including MLB and ROM;
+  exclude raw diagnostic archives, firmware license tables and private logs.
+  Public documentation refers only to a "peer Mac", never its serial-derived
+  hostname. Removing current files does not erase prior Git history.
+- Add artifact/source checksums, release checks, an English ordered backlog
+  and installation/rollback notes. No new firmware settings or live system
+  changes are made by publishing this repository.
 
-## 2026.09.18
-
-- Move internal-panel brightness support into A51mR2Backlight.
-- Disable duplicate WhateverGreen backlight handling with applbkl=0.
-- Add Tahoe support.
-
-Earlier implementation history is retained in Git history. Current installation
-requirements are defined in [README.md](README.md) and [release notes](docs/RELEASE.md).
+See [release notes](docs/RELEASE.md), [remaining work](TODO.md), and
+[privacy rules](docs/PRIVACY.md). Earlier history remains in [README](README.md#changelog).

@@ -1,33 +1,25 @@
-# High-resolution panel timing and EDID configuration
+# How to make any high resolution and refresh rate DIY screen work on Windows and Mac OS.
 
-## Scope
+## The problem and the fix
+Many people are playing with high-resolution and refresh-rate portable DIY screens because of their fine picture, smooth gaming and mouse moving, and incredible brightness. I have played with these screens such as B173ZAN06.6 (4k@120hz, 1000nit HDR), B173ZAN06.1 (4k@120hz, 500nit), B173ZAN06.0 (4k@60hz, 400nit), B156ZAN05.1 (4k@120hz, 400nit). Enthusiasts developed many adapter circuit modules for these DIY screens. They can be found on XianYu, Taobao or Ebay. I purchased more than five different kinds of these adapter boards. The biggest problem of these DIY setups is the compatibility. They are susceptible to the video cable, the graphics card, and the operating system. However, from my experience, all these compatibility problems are the error defined or missing EDID information inside the OS. So, I summarized how to fix this compatible issue here to help those who encounter this kind of problem.
 
-High-resolution eDP panels and adapter boards require compatible link hardware,
-cables, EDID data and display timings. Missing or incorrect EDID information can
-hide otherwise valid modes, but an EDID override cannot add physical bandwidth,
-change cable pinout or provide unsupported GPU/adapter capabilities.
+The key reason these screens have compatibility issues is that these screens are too avant-garde, and the operating system does not know the exact information to set the correct refresh rate. Therefore, we only need to manually modify or inject the EDID information to add or change this refresh rate information. 4k@60hz is almost supported by most of the OS by now. 4k@120hz and higher refresh rates have more problems. Hence, most of the time, manually adding the refresh rate information of 4k@120hz will fix the problem.
 
-The examples below cover AUO panels such as B173ZAN06.1 and B156ZAN05.1. Use
-panel-specific timing data and preserve the original EDID before applying an
-override. Do not assume that changing a 60 Hz timing to 120 Hz is sufficient.
+Here is ChatGPT's answer to this question
+<img width="749" alt="image" src="https://github.com/kingo132/a51m-r2-5700m-hackintosh/assets/46492291/5d1ff7e6-bcb9-4798-b5ca-715ae20b920d">
 
-Adapter-board firmware and EDID changes affect every connected operating system
-and require a board-specific recovery method. Software overrides affect only
-the system on which they are installed.
+Some people use solder to remove and reprogram the EEPROM using custom-made hardware: https://www.reddit.com/r/thinkpad/comments/zd8yqs/thinkpad_p17_lcd_upgrade_to_uhd_4k/. This will permanently solve this problem; you don't need to modify the EDID of the OS anymore. Also, this will make the screen support Nintendo Switch or iPad, which is impossible using the EDID software modification method.
 
 ## For Windows
 To change the EDID information of the Windows system, you need Custom Resolution Utility (CRU), which can be downloaded from [here](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) or [cru-1.5.1.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14399003/cru-1.5.1.zip)
 
 <img width="497" alt="image" src="https://github.com/kingo132/a51m-r2-5700m-hackintosh/assets/46492291/7f066bc9-6d80-4c57-9671-0c3f2ebccc61">
 
-Once you open this app, you will see all the screens connected to this computer, and you can modify their EDID information here. The illustrated examples use AUO9996 (B173ZAN06.6) and AUOB394 (B156ZAN05.1).
+Once you open this app, you will see all the screens connected to this computer, and you can modify their EDID information here. From my computer, I have AUO9996, which is B173ZAN06.6, and AUOB394, which is B156ZAN05.1.
 
 <img width="883" alt="image" src="https://github.com/kingo132/a51m-r2-5700m-hackintosh/assets/46492291/747a4ea0-7800-4191-bcf8-f2184a3ca369">
 
-For AUOB394 (B156ZAN05.1), the screenshots illustrate adding a detailed mode
-in an EDID extension block. Obtain timings from panel documentation or a known
-compatible configuration for the exact panel and adapter. Back up the original
-EDID and retain a working display mode for recovery.
+Take AUOB394 (B156ZAN05.1) as an example. Add 4k@120hz refresh rate information into the extension blocks of the EDID information by following the route in my screenshot. There are several ways to know the exact refresh rate parameters to set up this information. First, these EDID files usually present the 4k@60hz refresh information; just copy it and change the refresh rate to 120hz. Second, use another computer with no compatibility issues with this screen and dump the information from that computer. Thirdly, search the screen model on Google and try to see if this screen has existing EDID files online.
 
 For AUO9996 (B173ZAN06.6), you can try this parameter.
 
@@ -48,7 +40,7 @@ Before making this file, you need the binary EDID file of this screen. This bina
 base64 -i that-binary-edid.file
 ```
 
-An AUOB394 (B156ZAN05.1) example override is available here [DisplayVendorID-6af.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14399339/DisplayVendorID-6af.zip). Just unpack it and put it into that folder.
+For AUOB394 (B156ZAN05.1), I have made this file, and you can download it from here [DisplayVendorID-6af.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14399339/DisplayVendorID-6af.zip). Just unpack it and put it into that folder.
 
 Plus, here is the EDID file for B173ZAN06.1: [DisplayVendorID-6af.zip](https://github.com/kingo132/a51m-r2-5700m-hackintosh/files/14895556/DisplayVendorID-6af.zip)
 

@@ -1,9 +1,14 @@
 # A51mR2Backlight 1.2.7 release source snapshot
 
-Source for the A51mR2Backlight 1.2.7 release, including the native TG-cache
-module and kernel-safe compiler configuration. The project excludes unrelated
-display-policy and target-observation modules. Legacy global-rounding and
-panel-profile switches are not enabled in the release configuration.
+Implementation files match the retained source snapshot for the deployed
+1.2.7 binary. This separate snapshot leaves the original development checkout
+and its pending review untouched. It excludes later display-policy code-page
+and target-observation modules.
+
+The Xcode project is reconstructed from that checkout: only the existing TG
+module is added, kernel-safe TG compiler flags are retained, the later DPC
+module is excluded and MODULE_VERSION is pinned to 1.2.7. The release config
+does not enable the old global rounding or panel-profile test switches.
 
 Build prerequisites: Xcode, the Lilu developer headers/bundle and MacKernelSDK.
 Use dependency versions recorded in the root release manifest. Place local
@@ -24,6 +29,7 @@ clang++ -std=c++17 -Wall -Wextra -Werror -I A51mR2Backlight \
 /tmp/a51m-tg-release-test /path/to/AMDRadeonX6000Framebuffer
 ```
 
-Distributed binary hashes and platform limitations are documented at the
-repository root. Build outputs may vary with the toolchain. Original project and license:
+Build success is not byte-for-byte reproducibility or full sleep/wake
+acceptance. Packaged binary hashes and unresolved issues are documented at
+the repository root. Original project and license:
 https://github.com/kingo132/A51mR2Backlight.

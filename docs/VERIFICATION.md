@@ -1,56 +1,65 @@
-# Release validation
+# Release verification — 2026.11.15-oclp-free
 
-## Platform scope
+## Reference machine: performed
 
-Intel Alienware Area-51m R2, RX 5700M, macOS Tahoe 26.7.1 (25G241).
-The OCLP-free integration uses the original Apple system snapshot, native
-IOSkywalkFamily/IO80211Family, SimpleBCM 1.2.0 and SimpleHDA 1.0.1.
+- Confirmed running from the retained matching original Apple 25G241 snapshot.
+  The additional on-disk AppleHDA and IO80211 framework files from the patched
+  snapshot are absent; the original system/shared-cache framework path is used.
+- SimpleBCM 1.2.0 and SimpleHDA 1.0.1 actually loaded. AMFIPass no longer loaded;
+  native IOSkywalkFamily/IO80211Family are active.
+- Bound an HTTPS request to the Wi-Fi interface and received HTTP 200.
+  Enumerated built-in input/output, active Bluetooth and connected input device.
+- Speaker playback, brightness control and waking from sleep are covered
+  by the clean-system platform checks. This is basic functional acceptance, not every
+  duration/device/Continuity combination.
+- Preserved the custom battery a51m7, Dell activity-gate a51m1, Radeon a51m2,
+  backlight 1.2.7, AppleALC and NaviAudioFixup bytes while updating official
+  components. Native attached supply rating is 480 W for the tested pair;
+  prior validated per-input reports agree at 240 W each. These are rated
+  capacities, not measured wall power or a claim of two independent iStat rows.
+- A 60-frame hardware-only H.264 encode at 1280x720 passed during the component
+  update phase. It is not a long video/fence/VRAM-leak test of every later boot.
 
-## Functional coverage
+## Firmware requirements
 
-- System startup on the original Apple system volume without AMFIPass.
-- Wi-Fi network traffic through the wireless interface.
-- Internal audio-device enumeration and speaker playback.
-- Internal brightness control and basic sleep/wake.
-- Bluetooth controller and connected input-device operation.
-- Custom battery, adapter-rating and sensor integration.
+AppleXcpmCfgLock=false requires CFG Lock to be disabled in firmware. Set the
+quirk to true if firmware remains locked or its state is unknown. The quirk
+is a compatibility patch; it does not change the firmware setting.
 
-Hardware video encoding was exercised with a hardware-only H.264 workload.
-This coverage does not establish every peripheral combination, long-uptime
-behavior or performance characteristic.
+## Public packaging checks
 
-## Package integrity
+Release checks cover identity fields, artifact checksums, dependency order and
+OpenCore configuration validity. Privacy negative controls exercise rejection
+of sensitive identifiers and capture containers.
 
-- OpenCore 1.0.8 ocvalidate accepts the release configuration.
-- Release checks validate driver order, required paths, version metadata,
-  checksum consistency and absence of obsolete root-patch injection.
-- Privacy checks reject populated PlatformInfo identities and private capture
-  containers. Eight negative-control tests exercise identity and encoding checks.
-- [GitHub Actions](https://github.com/kingo132/a51m-r2-5700m-hackintosh/actions)
-  runs release and privacy checks for published commits.
-- [release-manifest.json](../release-manifest.json) identifies the distributed
-  EFI artifacts and source snapshots. Complete binary reproducibility across
-  different toolchains is not implied.
+The public EFI is derived from the deployed configuration with identity and
+Bluetooth controller state removed and the diagnostic battery observer omitted.
+The matching validator, privacy checks, manifest and dependency-order checks
+must pass for the published commit. CI status must be read from its actual run;
+local success must not be presented as a completed remote workflow.
 
-## Configuration requirements
+Retained custom-source snapshots and binary hashes identify the publication.
+No fresh whole-file reproducibility claim or full rebuild of every driver is
+made. Backlight code-section comparisons and battery policy tests are documented
+with their respective component maintenance history.
 
-`AppleXcpmCfgLock=false` requires CFG Lock to be disabled in firmware. Use
-`true` when firmware is locked or its state is unknown. The software quirk
-is a compatibility patch and does not change the firmware setting.
+## Still open
 
-Keep the machine-specific AppleALC and sensor plugins when updating official
-packages. The current profile retains its SIP and SecureBootModel policies.
+- WindowServer software fence/synchronize timeouts recur. Migration success
+  does not solve or attribute all desktop stalls.
+- Display resolution may reset after sleep. Earlier captures already contain
+  the same 1280x720 logical / 2560x1440 pixel 60 Hz mode; introduction by this
+  upgrade is not established. No forced-resolution service was added.
+- Permanent Universal Control/long-uptime brightness behavior, AirDrop, Handoff,
+  Watch unlock, OTA, headphone/HDMI audio, card reader and all peripheral
+  combinations require their own acceptance.
+- SimpleBCM network traffic works and LoaderError is zero, but diagnostic
+  command/notification error counters exist. Do not translate a successful
+  connection into a claim of zero driver diagnostics. Upstream leaves the
+  loader's StartedAwaitingHardware string after stack startup; that label
+  alone is not proof that a currently working interface is absent.
+- SIP/Authenticated Root were not tightened. NVMeFix causation is unproven;
+  Thunderbolt reports are device-specific. See [TODO.md](../TODO.md).
 
-## Known limitations
-
-- Intermittent WindowServer synchronization/fence delays and display-mode
-  persistence after sleep remain unresolved.
-- Basic sleep/wake coverage does not establish indefinite wake-brightness,
-  Universal Control reconnection or all long-uptime scenarios.
-- Continuity features, OTA compatibility and peripheral behavior depend on
-  the complete hardware, account and operating-system configuration.
-- SimpleBCM command/notification counters are diagnostic indicators, not
-  packet-loss measurements. Its loader status string alone does not describe
-  the current interface's operational state.
-- Battery firmware ratings and compatibility metadata are not calibrated
-  electrical measurements; see [battery reporting](BATTERY_FIELDS.md).
+No live EFI, BIOS, system cache, privacy identity or reboot state is changed by
+publishing this release.

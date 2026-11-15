@@ -1,11 +1,13 @@
-# A51m VirtualSMC source overlay
+# Retained A51m VirtualSMC source overlay
 
-Source overlay for the packaged SMCBatteryManager a51m7 and SMCDellSensors
-integration, including adapter reporting and activity-counter handling.
+This source is retained from the a51m7 deployment snapshot. It includes the
+battery and Dell sensor changes used by the packaged reference EFI. The
+retained battery deployment artifact matches the packaged executable byte
+for byte. Use the upstream/fork VirtualSMC build layout and matching Lilu
+SDK/MacKernelSDK dependencies; no SDK binaries are vendored here. The
+release manifest identifies deployed artifacts, not a claim that a build
+with another Xcode version produces an identical complete binary.
 
 Project: https://github.com/kingo132/VirtualSMC
 
-Use the VirtualSMC build layout with the matching Lilu SDK and MacKernelSDK.
-SDK dependencies are not vendored. Distributed artifacts and source files are
-identified in the root release manifest; complete binary reproducibility across
-toolchains is not implied. Preserve the accompanying LICENSE.txt.
+Private firmware dumps, adapter identifiers and runtime captures are excluded.
