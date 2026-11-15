@@ -1,52 +1,41 @@
-# Battery field accuracy
+# Battery and adapter reporting
 
-## Current packaged build: a51m7
+The A51m battery extension distinguishes firmware reports, compatibility fields
+and unavailable measurements. Monitoring applications display driver-supplied
+values; those values are not automatically calibrated electrical measurements.
 
-The packaged reference driver has advanced beyond the earlier a51m1 audit
-below. Its fresh Dell adapter bridge reports a firmware-rated total of
-480 W for the tested pair, with validated 240 W + 240 W port ratings. Those
-are attached supply **ratings**, not measured instantaneous consumption. The
-reference system export agrees with the total; separate port diagnostics do
-not imply that iStat exposes two independent rows.
+## Adapter ratings
 
-The old synthetic per-cell voltages are not current measurements and must
-not be presented as such. Unsupported fields remain unavailable; their exact
-consumer UI needs separate acceptance. A cycle count is now reported, but no
-independent lifetime-count calibration is claimed. The current release keeps
-this distinction rather than filling missing fields with plausible numbers.
+SMCBatteryManager a51m7 obtains the attached supply rating through the Dell
+firmware interface and validates per-input reports before publication. A pair of
+240 W supplies is represented as a 480 W total rating with two 240 W input
+ratings. These are supply capacities, not instantaneous computer consumption.
 
-## Historical a51m1 audit — observations below are not current values
+The native adapter bridge publishes the total rating. Separate per-input
+telemetry does not imply that every monitoring application provides separate
+adapter rows. Ambiguous, stale or inconsistent reports must remain unavailable
+rather than being replaced by a fixed wattage.
 
-The following historical audit checked then-current AppleSmartBattery values and the then-deployed
-[A51m VirtualSMC source](https://github.com/kingo132/VirtualSMC/tree/05fe28585a568d61246d6b43a1d982d1ef9c6120)
-on 2026-11-15. The battery time-policy repair does **not** make every exported
-metadata field a hardware measurement. iStat Menus displays several values
-supplied by the compatibility driver.
+## Field interpretation
 
-| Displayed field | Historical observation | Meaning and confidence |
-| --- | --- | --- |
-| Adapter power | 60 W | Placeholder. `KeyImplementations.cpp`, `ACID::readAccess`, supplies a fixed dummy adapter descriptor including byte `0x3c`. This is not measured input power or verified adapter rating. |
-| Battery power | 0 W | Consistent with reported battery current zero while on AC with charging paused by the configured thresholds. This is battery flow, not total computer power. |
-| Battery amperage | 0 A | Matches both current system current fields and the earlier ACPI observer state/rate 0/0. |
-| Battery voltage | About 12.3 V | Matches the current pack report around 12347 mV. The driver exports presentVoltage; this is pack voltage, not a cell voltage. No external meter calibration is claimed. |
-| Cycles | 0 | Not established as a real lifetime count. The extended ACPI path exports the supplied `_BIX` cycle field; the legacy `_BIF` fallback estimates cycles from capacity loss. A real firmware/independent-OS comparison is still needed. |
-| Condition | Normal | Limited to the system/driver's available status checks. It is not an independent physical-health test; manufacturer failure/operation status replies are currently synthesized as zero. |
-| Design capacity | 7895 mAh | Matches the current normalized firmware/driver design-capacity field. Independent calibration is still pending. |
-| Current capacity in the health section | 7077 mAh | Matches current **full-charge capacity**, not remaining charge. Remaining charge in this capture is about 5915 mAh, or 84%. Full/design capacity is about 89.6%; that ratio alone is not a complete health diagnosis. |
-| Cell 1 voltage | 16 V | Placeholder, not a measurement. `SMCSMBusController.cpp` returns `defaultBatteryCellVoltage` for every cell-voltage command, and `SMCBatteryManager.cpp` exports the same constant through the SMC cell key. The SDK defines it as 16000 mV. Do not replace it with pack voltage or a guessed equal-per-cell split. |
+| Field | Meaning |
+| --- | --- |
+| Battery current and power | Battery charge/discharge flow; not total system input power. Zero current on AC can be normal when charging is paused. |
+| Battery voltage | Pack-voltage report; not an individual cell measurement. |
+| Full-charge capacity | Estimated capacity at full charge; distinct from remaining charge. |
+| Design capacity | Firmware-reported nominal capacity; not an independent health measurement. |
+| Cycle count | Firmware/compatibility report; interpret according to the available ACPI data source. |
+| Condition | Available status checks; not a substitute for physical battery diagnostics. |
+| Cell voltage and other unsupported metadata | Unavailable unless a suitable firmware source exists. Do not substitute pack voltage, guessed cell splits or plausible constants. |
 
-Additional unsupported defaults exist: battery temperature starts at 2931
-deci-kelvin (about 20 C), requested charging voltage at 8000 mV, and design
-cycle count at 1000. They require actual supplement support to become meaningful;
-they are not evidence of a defective charger, a real 8 V charging command or a
-measured temperature. Current supplement configuration is zero.
+Earlier a51m1 builds used compatibility placeholders including a fixed 60 W
+adapter descriptor and 16 V cell values. Those historical values must not be
+interpreted as measurements or applied to the current adapter-rating bridge.
 
-Next repair is to identify the supported firmware/EC data sources and the
-correct consumer behavior for unavailable information. Validate per-command
-unknown/unsupported handling before changing the virtual SMBus contract. Do
-not patch the monitor app, hardcode an adapter wattage, invent cell readings
-or alter charging behavior to make labels look plausible.
+Firmware charge thresholds can leave a connected battery idle above the start
+threshold or after reaching the stop threshold. This behavior alone is not a
+charging-driver failure.
 
-Charging starts below 50% and stops at 80% on the owner's current BIOS policy.
-AC attached/not charging around 84% therefore does not indicate a defect.
-The manually initiated shutdown is not a battery failure report.
+The source overlay and artifact checksums are included in the release manifest.
+Further work focuses on supported metadata sources, consumer handling of
+unavailable values and adapter lifecycle behavior; see [the roadmap](../TODO.md).
