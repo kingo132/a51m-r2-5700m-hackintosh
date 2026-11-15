@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-11-15 — OCLP-free EFI and corrected acceptance scope
+
+- Replace separate legacy Skywalk/IO80211 Wi-Fi injection and AMFIPass with
+  SimpleBCM 1.2.0; remove the IOSkywalk block and `-amfipassbeta`.
+- Add SimpleHDA 1.0.1 after the preserved custom AppleALC. On the reference
+  machine, revert to the matching original Apple snapshot and uninstall
+  OCLP-Mod application/services; checking out this repository does neither.
+- Update OpenCore main application, its matching OpenRuntime/OpenCanopy/
+  AudioDxe/OpenShell components, official WEG, VirtualSMC/SMCProcessor and
+  AirportBrcmFixup. The existing fallback BOOTx64 bootstrap is retained and
+  separately identified; do not describe it as a new 1.0.8 binary.
+- Retain and package deployed SMCBatteryManager a51m7, SMCDellSensors a51m1
+  and SMCRadeonSensors a51m2 with source snapshots and artifact checksums.
+  Earlier documentation describing fixed 60 W/16 V fields applies to the
+  earlier battery build, not the current adapter-rating bridge.
+- Package LucyRTL8125Ethernet 1.2.4 (Info.plist 1.2.400). Its next-boot runtime
+  acceptance is pending; it is not credited with solving general networking.
+- Set AppleXcpmCfgLock=false for the already-configured reference firmware
+  according to the owner's confirmation. No new firmware write or independent
+  all-core MSR read occurred; first boot after this quirk change is pending.
+- Preserve SIP and RestrictEvents/sbvmm; omit iBridged, extra boot managers
+  and redundant test configurations. The publication template clears identity
+  and Bluetooth controller state and disables the diagnostic battery observer.
+- Correct the Broadcom/Ventura advice, overly broad Thunderbolt statement
+  and unproven NVMeFix-panic attribution. Preserve existing unresolved display,
+  long-uptime, Continuity and calibration limitations.
+
+
 ## 2026-11-15 — Tahoe display and battery maintenance
 
 This update packages fixes already deployed on the reference A51m R2. It does

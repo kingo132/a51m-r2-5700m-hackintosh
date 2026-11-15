@@ -1,0 +1,3 @@
+# Preserve the exact retained upstream/source-overlay whitespace.
+sources/VirtualSMC-A51m-a51m7/** whitespace=-trailing-space,-blank-at-eof
+sources/SMCRadeonSensors-A51m-a51m2/** whitespace=-trailing-space,-blank-at-eof

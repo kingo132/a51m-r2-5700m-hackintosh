@@ -15,7 +15,28 @@ brightness or Universal Control issue has been resolved.
 
 # ChangeLog
 
-### 20261115
+### 20261115 — OCLP-free reference EFI
+
+- Restore the original Apple macOS 26.7.1 (25G241) system snapshot and replace
+  Broadcom/audio root patches with SimpleBCM 1.2.0 and SimpleHDA 1.0.1.
+  The reference machine has booted this combination successfully; Wi-Fi,
+  speakers, brightness and basic sleep/wake were checked. See the
+  [migration and rollback guide](docs/OCLP_FREE.md).
+- Package OpenCore 1.0.8, official WhateverGreen 1.7.1, VirtualSMC/SMCProcessor
+  1.3.8 and AirportBrcmFixup 2.2.1. Preserve the machine-specific AppleALC,
+  NaviAudioFixup, backlight and current A51m sensor builds.
+- Package LucyRTL8125Ethernet 1.2.4. Deployment is complete, but a new boot
+  with this Ethernet version has not yet been accepted.
+- Keep RestrictEvents + `revpatch=sbvmm`, the current SIP configuration and
+  `SecureBootModel=Disabled`. No iBridged or extra boot manager is included.
+- The reference owner reports having run the existing firmware setup script;
+  `AppleXcpmCfgLock=false` reflects that prerequisite. This change is not an
+  independent MSR measurement and is not yet boot-accepted. **If your CFG Lock
+  is still locked or unknown, set this quirk to `true` before first boot.**
+- Correct outdated OCLP, Thunderbolt, NVMeFix and battery-field statements.
+  Remaining display timeouts/resolution-reset behavior are not declared fixed.
+
+### 20261115 — Earlier display/battery package
 
 - Package deployed A51mR2Backlight 1.2.7 and A51m-specific SMCBatteryManager
   1.3.8, with Built-In display mapping and battery time policy enabled.
@@ -27,11 +48,11 @@ brightness or Universal Control issue has been resolved.
 - Details and unresolved issues: [CHANGELOG.md](CHANGELOG.md), [TODO.md](TODO.md).
 
 ### 20261011
-1. Disabled `NVMeFix.kext`. This laptop handles NVMe APST/ASPM natively, and NVMeFix can interfere with it and cause rare kernel panics. Thanks to [@TechProgenitor](https://github.com/TechProgenitor) ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26)).
+1. Disabled `NVMeFix.kext` while using the apparent native NVMe power-management path. The previously suspected link to rare kernel panics was not established: the reporter later [reproduced the crash with NVMeFix disabled](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/27#issuecomment-6392392587). Keeping it disabled is the current configuration choice, not proof that it caused a panic. Thanks to [@TechProgenitor](https://github.com/TechProgenitor) ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26)).
 2. Disabled `VoodooPS2Mouse.kext` and `VoodooPS2Trackpad.kext`. The trackpad is driven by VoodooI2C + VoodooRMI, and only the PS2 keyboard is needed.
 3. Disabled `OpenLinuxBoot.efi` and `ext4_x64.efi`. Re-enable them if you dual-boot Linux.
 4. Removed `keepsyms=1` from boot-args (`DisableLinkeditJettison` is already enabled).
-5. Added [setup_var.efi](https://github.com/datasone/setup_var.efi) (0.3.1) with two hidden boot entries, `Unlock CFG Lock` and `Restore CFG Lock` (press Space in the picker to show them). They write `CpuSetup:0x3E` (the `CFG Lock` option, verified in [a51mr2_biosdump.txt](a51mr2_biosdump.txt)) and reboot. `AppleXcpmCfgLock` stays enabled, so the EFI boots whether CFG Lock is locked or not. After unlocking, you may set it to `false`.
+5. Added [setup_var.efi](https://github.com/datasone/setup_var.efi) (0.3.1) with two hidden boot entries, `Unlock CFG Lock` and `Restore CFG Lock` (press Space in the picker to show them). They write `CpuSetup:0x3E` (the `CFG Lock` option, verified in [a51mr2_biosdump.txt](a51mr2_biosdump.txt)) and reboot. `AppleXcpmCfgLock` was kept enabled in that release. The current reference profile sets it to `false` based on the owner's prior firmware-setup operation; other installations with locked/unknown CFG Lock must retain `true`. See [current acceptance limits](docs/VERIFICATION.md).
 6. Updated AppleALC to [@TechProgenitor](https://github.com/TechProgenitor)'s 2026-10-08 build (`REL-198-2026-10-08`). It fixes a kernel panic on wake that could happen when the iGPU is enabled. The deferred AFG recovery now only targets the Realtek HDEF codec ([#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26#issuecomment-6071931437)).
 7. Added [NaviAudioFixup](https://github.com/TechProgenitor/NaviAudioFixup) 1.0.0 for native HDMI audio from the RX 5700M. It is configured with `naviaudio-patch-enable = 1` and `naviaudio-port2-node = 3` on the dGPU.
 
@@ -47,7 +68,7 @@ brightness or Universal Control issue has been resolved.
 1. Fixed the backlight of Sequoia
 2. Revise EFI to support Sequoia
 
-OCLP post-install patch is needed for WiFi to function. [OCLP](https://github.com/5T33Z0/OC-Little-Translated/blob/main/14_OCLP_Wintel/Enable_Features/WiFi_Sonoma.md)
+**Historical note, superseded:** older EFI revisions used OCLP Broadcom root patches. The current reference EFI uses SimpleBCM/SimpleHDA on the original Apple system snapshot. Do not combine the new injectors with the old root-patched system; follow [the migration guide](docs/OCLP_FREE.md).
 
 How to extract the x6000 framebuffer text from SystemKernelExtensions.kc
 * [ghidra](https://github.com/NationalSecurityAgency/ghidra) -> import -> export
@@ -142,7 +163,9 @@ You can upgrade to Monterey now. You may, however, encounter failure during the 
 2. Fixed Monterey backlight patch for rx5700m
 3. Updated Opencore to 0.8.2
 
-# Stay on Ventura if you are using Broadcom Wi-Fi
+# Historical Broadcom notes — superseded for the current reference EFI
+
+The following early-Sonoma discussion is historical, not a current recommendation to stay on Ventura. SimpleBCM has been boot-checked on the reference Tahoe system. Compatibility with every card, macOS update or Continuity feature is not implied.
 
 * First of all, iMac 20,1 is not supported to use the root patch of Opencore Legacy Patcher. Therefore, the popular workaround on the internet does not work for this model. [OCLP Supported Models](https://dortania.github.io/OpenCore-Legacy-Patcher/MODELS.html)
 * Sonoma 1st beta supports only the following Broadcom chipsets: 14e4:43dc, 14e4:4464, 14e4:4488, 14e4:4425, 14e4:4433 and 14e4:4434, i.e. BCM4355 (802.11ac), BCM4364 (802.11ac), BCM4377b (802.11ac), BCM4378 (802.11ax), BCM4387 (802.11ax) and BCM4388 (802.11ax). Afaik, all those are provided as specific SOCs to Apple by Broadcom, i.e. chips to be soldered on Apple motherboards and not available on add-on mini-PCIe/M.2 cards.
@@ -197,7 +220,7 @@ alc-verb 0x21 SET_EAPD_BTLENABLE 0x2
 - [x] Cardreader
   * Fixed! Use this driver: https://github.com/0xFireWolf/RealtekCardReader
 - [x] Thunderbolt hotplug
-  * Works with only the `PCI-Thunderbolt` device property on `PciRoot(0x0)/Pci(0x1C,0x4)/Pci(0x0,0x0)` (already in config.plist), including warm/cold boot hotplug and sleep/wake. Tested by [@TechProgenitor](https://github.com/TechProgenitor) in [#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26).
+  * The existing `PCI-Thunderbolt` property was reported working for particular devices in [#26](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/26), not all Thunderbolt hardware. Later [#27 testing](https://github.com/kingo132/a51m-r2-5700m-hackintosh/issues/27#issuecomment-6871461373) required an SSDT for one Thunderbolt eGPU: replacing it with device properties made that eGPU disappear. The reference EFI does not add that device-specific SSDT by default. AGA and Thunderbolt eGPU configurations are different.
   * If the Thunderbolt controller doesn't show up in macOS, enable `GPIO3 Force Pwr` in the BIOS (with UMAF).
 - [x] Sleep / Wake
   * ~~Sleep will crash with "Sleep Wake failure in EFI" error. Seems not easy to fix.~~

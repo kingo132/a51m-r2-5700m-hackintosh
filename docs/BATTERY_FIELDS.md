@@ -1,12 +1,29 @@
 # Battery field accuracy
 
-Checked against the current AppleSmartBattery registry values and the deployed
+## Current packaged build: a51m7
+
+The packaged reference driver has advanced beyond the earlier a51m1 audit
+below. Its fresh Dell adapter bridge reports a firmware-rated total of
+480 W for the tested pair, with validated 240 W + 240 W port ratings. Those
+are attached supply **ratings**, not measured instantaneous consumption. The
+reference system export agrees with the total; separate port diagnostics do
+not imply that iStat exposes two independent rows.
+
+The old synthetic per-cell voltages are not current measurements and must
+not be presented as such. Unsupported fields remain unavailable; their exact
+consumer UI needs separate acceptance. A cycle count is now reported, but no
+independent lifetime-count calibration is claimed. The current release keeps
+this distinction rather than filling missing fields with plausible numbers.
+
+## Historical a51m1 audit — observations below are not current values
+
+The following historical audit checked then-current AppleSmartBattery values and the then-deployed
 [A51m VirtualSMC source](https://github.com/kingo132/VirtualSMC/tree/05fe28585a568d61246d6b43a1d982d1ef9c6120)
 on 2026-11-15. The battery time-policy repair does **not** make every exported
 metadata field a hardware measurement. iStat Menus displays several values
 supplied by the compatibility driver.
 
-| Displayed field | Current observation | Meaning and confidence |
+| Displayed field | Historical observation | Meaning and confidence |
 | --- | --- | --- |
 | Adapter power | 60 W | Placeholder. `KeyImplementations.cpp`, `ACID::readAccess`, supplies a fixed dummy adapter descriptor including byte `0x3c`. This is not measured input power or verified adapter rating. |
 | Battery power | 0 W | Consistent with reported battery current zero while on AC with charging paused by the configured thresholds. This is battery flow, not total computer power. |

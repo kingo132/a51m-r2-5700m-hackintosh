@@ -1,99 +1,81 @@
-# Maintenance release: 2026.11.15
+# Maintenance release: 2026.11.15-oclp-free
 
-## Scope
+The reference A51m R2 / RX 5700M has booted macOS 26.7.1 (25G241) from its
+original Apple system snapshot with EFI-injected Wi-Fi and audio. The final
+accepted candidate was promoted to `EFI/OC`; no redundant test directory or
+extra boot manager is packaged. Read [migration/rollback](OCLP_FREE.md) before
+using this on a previously root-patched installation.
 
-This is a release package of the deployed display/battery fixes, with explicit
-remaining limitations in [TODO.md](../TODO.md). It is not a release of the
-uninstalled Universal Control, displaypolicyd code-page or brightness-HUD
-candidates. The public EFI is a template and cannot carry an owner's identity.
+This is an identity-free template. Supply your own PlatformInfo locally.
+The public template omits the battery observer and restores only the previous
+public zero/absent Bluetooth-controller state; it never exports private identity.
+Other live reference hardware settings are preserved.
 
-Validated reference: Intel A51m R2, RX 5700M, macOS 26.7.1 (25G241),
-OpenCore 1.0.7. Private-driver hooks fail closed for unknown fingerprints;
-support for another system build requires fresh validation.
+**Firmware prerequisite:** AppleXcpmCfgLock is false in this reference profile
+because the owner confirms running the existing firmware setup script. No
+independent all-core MSR read was completed, and this quirk change has not yet
+been boot-accepted. Set it to true before first boot if CFG Lock is still locked
+or its state is unknown. Do not run another machine's setup_var offsets blindly.
+SIP and SecureBootModel remain at the reference's existing settings; the user
+explicitly deferred restoring SIP.
 
-Battery metadata is not fully supported: the adapter's 60 W and cell's 16 V
-are fixed compatibility values. The time fix does not repair these fields.
-Read the [field accuracy audit](BATTERY_FIELDS.md) before interpreting monitor
-app readings as hardware measurements.
+## Packaged components and provenance
 
-| Component | Packaged version | Provenance |
+| Component | Packaged version | Acceptance/source |
 | --- | --- | --- |
-| A51mR2Backlight | 1.2.7, Release | Exact deployed binary, matching retained source snapshot under `sources/A51mR2Backlight-1.2.7`; original project: [A51mR2Backlight](https://github.com/kingo132/A51mR2Backlight). Newer development candidates are excluded. |
-| SMCBatteryManager | 1.3.8, A51m revision `1.3.8-a51m1` | [VirtualSMC fork commit 05fe28585a568d61246d6b43a1d982d1ef9c6120](https://github.com/kingo132/VirtualSMC/commit/05fe28585a568d61246d6b43a1d982d1ef9c6120). |
-| OpenCore and other KEXTs | Existing repository versions | Preserved from the current main branch; no unrelated upgrade. |
+| OpenCore main application | 1.0.8 | Official Release; reference boot passed. |
+| OpenRuntime, OpenCanopy, AudioDxe, OpenShell | From OpenCore 1.0.8 | Updated matching components; disabled OpenLinuxBoot is also from this package. |
+| BOOTx64 fallback bootstrap | Retained prior 1.0.7 bootstrap | Exact existing reference file, not described as a new 1.0.8 bootstrap. Firmware can also launch OpenCore.efi directly. |
+| Lilu | 1.7.2 | Preserved. |
+| WhateverGreen | Official 1.7.1 | Replaces the old custom backlight fork; applbkl=0 and the independent backlight plugin remain. Reference boot/basic use passed. |
+| VirtualSMC / SMCProcessor | 1.3.8 | Official Release; custom battery/Dell plugins are preserved rather than overwritten with stock plugins. |
+| AirportBrcmFixup | 2.2.1 | Official Release; Wi-Fi traffic passed with SimpleBCM. |
+| LucyRTL8125Ethernet | 1.2.4 / Info.plist 1.2.400 | Official Release deployed; next-boot runtime acceptance is pending. Upstream change repairs promiscuous mode after wake, not a general speed boost. |
+| SimpleBCM | 1.2.0 | Official Release; loaded with native Skywalk/IO80211 and actual Wi-Fi traffic checked. |
+| SimpleHDA | 1.0.1 | Official Release; internal audio devices and user-confirmed speaker playback passed. No optional HAL installed. |
+| A51mR2Backlight | 1.2.7 | Retained deployed binary/source under sources/A51mR2Backlight-1.2.7. |
+| SMCBatteryManager | 1.3.8-a51m7 | Retained deployed artifact and source overlay under sources/VirtualSMC-A51m-a51m7; native attached supply rating agrees with Dell reports. |
+| SMCDellSensors | 1.3.8-a51m1 activity gate | Retained deployed custom binary/source overlay; not the stock same-version release. |
+| SMCRadeonSensors | 2.4.0-a51m2 candidate | Deployed telemetry artifact; source retained under sources/SMCRadeonSensors-A51m-a51m2 with its license. Basic telemetry only, not fan control or full lifecycle acceptance. |
+| AppleALC / NaviAudioFixup | Custom 1.9.8 / 1.0.0 | Retain machine-specific audio/wake behavior. Do not substitute stock AppleALC solely because its version number is newer. |
+| VoodooRMI | 1.3.5 | Intentionally retained; the earlier 1.4.3 Tahoe panic report is not resolved by this release. |
+| NVMeFix | Disabled | Native power-management choice; a causal link to the reported rare panic was never established. |
 
-[`release-manifest.json`](../release-manifest.json) records the changed KEXT
-files and source checksums. The backlight project file is reconstructed from
-the development project with the later DPC module excluded and version pinned
-to 1.2.7; implementation files are the retained deployment snapshot. A build
-check is not a claim of byte-for-byte reproducibility across Xcode versions.
+`release-manifest.json` records all EFI/source file hashes and the official
+package download hashes. The source overlays retain corresponding local source
+state and licenses; matching a deployed artifact to a retained local build does
+not prove complete reproducibility with another toolchain. Older battery commit
+references describe the older a51m1 artifact, not the new a51m7 binary.
 
-## EFI configuration
+## Acceptance limits
 
-- Use `CFG_LINK_BUILT_IN_MAP=1` instead of `CFG_LINK_FIXED_MAP=1` on the existing
-  dGPU path. Preserve all unrelated hardware properties.
-- Keep `applbkl=0` so WhateverGreen does not duplicate the standalone backlight
-  implementation.
-- Enable `-a51mbattime` for the A51m battery time policy. The public profile
-  leaves `-a51mbatobserve` absent. For fault capture only, add it temporarily,
-  retain captures privately, then remove it. No observer daemon is required.
-- Do not add the old `-a51bklfixed16`, `-a51bklprofile`, legacy-curve, DPC or HUD
-  test flags. Native brightness targets must remain intact.
-- Fill in **your own** SMBIOS identity locally before booting. The public
-  template intentionally clears serials, UUIDs, MLB and ROM. Never publish
-  the personalized file.
+See [VERIFICATION.md](VERIFICATION.md). Speakers, brightness and basic sleep/wake
+were confirmed by the owner after the original-system/injector boot. Remaining
+WindowServer timeouts and resolution persistence are not declared repaired.
+Prior captures already show the same display mode, so a regression introduced
+by this update is unproven. Adapter ratings are not instantaneous power draws;
+unsupported cell metadata is not a physical measurement. See
+[BATTERY_FIELDS.md](BATTERY_FIELDS.md) and [TODO.md](../TODO.md).
 
-## System/application settings
+## Supported local application settings
 
-These are not EFI settings and are not silently applied by checking out this
-repository:
+These are separate from the EFI and are not applied by downloading this repo:
 
-1. **AirPlay:** `scripts/repair_airplay_scaling.py --preflight` performs a
-   read-only installed-framework check. After reviewing the plan, run with
-   administrator privileges and `--apply`. The tool changes only root-scope
-   `com.apple.coremedia/wirelessdisplay_enable_vtscaling` to false, saves the
-   original two preference scopes privately, verifies with a fresh process
-   and rolls back a failed application. `--restore <backup.json>` restores
-   only when the current scopes still match the expected applied state.
-   New sessions read the preference; no service or system restart is needed.
-   A fresh OS needs reapplication; after a system upgrade, run preflight again
-   and refuse unknown binaries. Framework UUIDs are software build IDs, not
-   machine identifiers. VPN address selection remains an independent issue.
-2. **AlienFX:** turn off keyboard-triggered accidental-click suppression;
-   lighting remains available.
-3. **Menu monitoring:** the owner now uses the official iStat Menus 7 upgrade,
-   superseding the temporary Stats replacement. Back up/export the original
-   layout locally and verify its migration. Stop Stats after iStat is working
-   to avoid duplicate polling. License codes and exported preferences stay
-   private. Version 7 is not assumed to inherit or fix every version 6 issue;
-   validate it over extended uptime.
-4. **BetterDisplay:** turn off "Allow using F14/F15 as alternative brightness
-   keys" and "Enable connect/disconnect option for displays". The latter
-   disables BetterDisplay soft display reconnection and its Intel wake
-   workaround. It does not fix all wake brightness or fence timeouts.
-5. **Widgets:** leave the implicated world-clock widget removed while
-   extended-uptime behavior is validated.
+- AirPlay: the retained `scripts/repair_airplay_scaling.py` performs a
+  build-checked one-key preference backup/restore. Run preflight again after
+  an OS change. Earlier peer-Mac acceptance does not establish new OTA or
+  permanent VPN endpoint compatibility.
+- AlienFX: preserve lighting while disabling keyboard-triggered click suppression.
+- Monitoring: the owner uses the purchased iStat Menus 7; licenses, layouts and
+  preference exports stay private. Extended-uptime acceptance remains separate.
+- BetterDisplay/widget mitigations are not a cure for all desktop stalls;
+  consult the historical changelog and remaining-work list rather than
+  automatically resetting display modes or installing a resident watchdog.
 
-For reinstall/upgrade, recheck these supported app settings rather than
-installing a private always-running recovery service. App settings may migrate
-with the user profile, but persistence across every future upgrade is not
-guaranteed. The AirPlay key is private and requires build-specific revalidation.
+## Checks before publication/deployment
 
-## Installation and rollback
-
-1. Back up the entire existing EFI outside the EFI partition as well as the
-   individual old KEXTs/config. Preserve the private identity locally.
-2. Compare the target with this release's two updated KEXTs and config deltas.
-   Do not replace a personalized config blindly or copy private backups into
-   this repository. Existing VirtualSMC remains unchanged by this package.
-3. Run `python3 scripts/check_release.py` and an `ocvalidate` matching the
-   installed OpenCore version. Review the diff before deployment.
-4. Boot only when separately authorized. Verify loaded versions, TG state,
-   brightness control, battery time/state and logs. Keep unresolved wake
-   behavior distinct from basic boot/brightness acceptance.
-5. To roll back, restore the backed-up KEXTs and matching private config
-   together. Restore the AirPlay key through its typed backup, and app settings
-   through their own UI. Do not clear unrelated preferences or caches.
-
-No deployment, system restart, firmware write or automatic recovery service
-is triggered by these release checks.
+Run `python3 scripts/check_release.py`, the privacy rejection tests and the
+OpenCore 1.0.8 `ocvalidate` against the sanitized config. Back up your full private
+EFI and review the actual diff. Never copy a public blank-identity template over
+an owner's personalized config without restoring that owner's own identity.
+No publication check reboots, writes firmware, changes SIP or deploys to EFI.

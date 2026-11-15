@@ -79,9 +79,12 @@ def contains_private(obj, needles):
 def check_candidate(path, raw, needles=()):
     errors = []
     lower = path.lower()
+    # This licensed source header's upstream directory is named Private;
+    # it is not a runtime capture. Identifier scanning below still applies.
+    source_header = lower == 'sources/virtualsmc-a51m-a51m7/virtualsmc/private/thread_status.h'
     if (lower.endswith(('.pftrace', '.ioreg', '.zip', '.log')) or
             'sysdiagnose' in lower or 'darwindumper' in lower or
-            re.search(r'(^|/)(private|evidence|diagnostics|backups)(/|$)', lower) or
+            (not source_header and re.search(r'(^|/)(private|evidence|diagnostics|backups)(/|$)', lower)) or
             re.search(r'(^|/)msdm\.(aml|dsl)$', lower) or
             'private-identifiers' in lower):
         errors.append('private capture/backup/license container')
@@ -145,6 +148,28 @@ def main():
         if info.get('CFBundleVersion') != expected:
             errors.append(name + ': unexpected release version')
     enabled = [item['BundlePath'] for item in config['Kernel']['Add'] if item.get('Enabled')]
+    obsolete = {'AMFIPass.kext', 'IOSkywalkFamily.kext', 'IO80211FamilyLegacy.kext'}
+    if any(path.split('/')[0] in obsolete for path in enabled):
+        errors.append('config: legacy root-patch injection in OCLP-free release')
+    if any((ROOT / 'EFI/OC/Kexts' / name).exists() for name in obsolete):
+        errors.append('artifacts: obsolete root-patch KEXT retained')
+    if '-amfipassbeta' in flags:
+        errors.append('config: obsolete AMFIPass flag')
+    if any(item.get('Enabled') and item.get('Identifier') == 'com.apple.iokit.IOSkywalkFamily'
+           for item in config['Kernel']['Block']):
+        errors.append('config: native IOSkywalk must not be blocked')
+    for dependency, plugin in [('AppleALC.kext', 'SimpleHDA.kext'),
+                                ('AirportBrcmFixup.kext', 'SimpleBCM.kext'),
+                                ('SimpleBCM.kext', 'AirportBrcmFixup.kext/Contents/PlugIns/AirPortBrcmNIC_Injector.kext')]:
+        if dependency not in enabled or plugin not in enabled or enabled.index(dependency) > enabled.index(plugin):
+            errors.append('config: missing or misordered OCLP-free dependency ' + plugin)
+    if not config['Kernel']['Quirks']['DisableLinkeditJettison']:
+        errors.append('config: SimpleHDA requires preserved linkedit symbols')
+    for item in config['Kernel']['Add']:
+        if item.get('Enabled'):
+            for field in ['ExecutablePath', 'PlistPath']:
+                if item[field] and not (ROOT / 'EFI/OC/Kexts' / item['BundlePath'] / item[field]).is_file():
+                    errors.append('config: missing enabled KEXT path ' + item['BundlePath'])
     for name in ['A51mR2Backlight.kext', 'SMCBatteryManager.kext']:
         if enabled.count(name) != 1:
             errors.append(name + ': expected exactly one enabled entry')

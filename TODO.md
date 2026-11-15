@@ -1,3 +1,21 @@
+# Current migration checkpoint
+
+- OCLP-free reference boot, Wi-Fi network access, speakers, brightness and
+  basic sleep/wake passed; OCLP-Mod is removed and the matching original Apple
+  system snapshot is active. This does not close the broader lifecycle tasks.
+- The current reference battery build is a51m7: its native 480 W attached
+  supply rating agrees with validated 240 + 240 W reports. Earlier BAT-00
+  placeholder descriptions below are historical and need remaining consumer,
+  plug/unplug and lifecycle acceptance rather than another fixed-value patch.
+- Ethernet 1.2.4 and AppleXcpmCfgLock=false are deployed but pending a new
+  boot. CFG status is based on owner-confirmed prior firmware setup, not an
+  independent MSR check.
+- Display resolution persistence remains open. Earlier captures show the
+  same 1280x720 logical / 2560x1440 pixel, 60 Hz mode, so introduction by this
+  update is unproven. Do not add a periodic forced-resolution service.
+- Validate AirDrop, Handoff, Watch unlock, HDMI/headphone audio, SD card and
+  OTA behavior separately before expanding the compatibility claims.
+
 # Repair backlog
 
 Updated: 2026-11-15. Work from lower to higher estimated repair difficulty.

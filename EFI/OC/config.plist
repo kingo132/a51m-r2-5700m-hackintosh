@@ -190,10 +190,6 @@
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)</key>
 			<dict>
-				<key>naviaudio-patch-enable</key>
-				<integer>1</integer>
-				<key>naviaudio-port2-node</key>
-				<integer>3</integer>
 				<key>@0,AAPL,boot-display</key>
 				<data>
 				AQAAAA==
@@ -202,16 +198,20 @@
 				<string>5700M</string>
 				<key>ATY,FamilyName</key>
 				<string>Radeon RX</string>
+				<key>CFG_LINK_BUILT_IN_MAP</key>
+				<integer>1</integer>
 				<key>hda-gfx</key>
 				<string>onboard-2</string>
 				<key>model</key>
 				<string>AMD Radeon RX 5700M</string>
+				<key>naviaudio-patch-enable</key>
+				<integer>1</integer>
+				<key>naviaudio-port2-node</key>
+				<integer>3</integer>
 				<key>unfairgva</key>
 				<data>
 				BAAAAA==
 				</data>
-				<key>CFG_LINK_BUILT_IN_MAP</key>
-				<integer>1</integer>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
 			<dict>
@@ -420,6 +420,24 @@
 			</dict>
 			<dict>
 				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>SimpleHDA.kext</string>
+				<key>Comment</key>
+				<string>SimpleHDA 1.0.1</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/SimpleHDA</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
+				<key>MinKernel</key>
+				<string>25.0.0</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
 				<string>CPUFriend.kext</string>
@@ -476,78 +494,6 @@
 				<key>Arch</key>
 				<string>Any</string>
 				<key>BundlePath</key>
-				<string>AMFIPass.kext</string>
-				<key>Comment</key>
-				<string>Sonoma+ Broadcom/OCLP compatibility</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/AMFIPass</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>23.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>IOSkywalkFamily.kext</string>
-				<key>Comment</key>
-				<string>Legacy Broadcom Wi-Fi stack for Sonoma+</string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/IOSkywalkFamily</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>23.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>IO80211FamilyLegacy.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/IO80211FamilyLegacy</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>23.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/AirPortBrcmNIC</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>23.0.0</string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
 				<string>AirportBrcmFixup.kext</string>
 				<key>Comment</key>
 				<string></string>
@@ -561,6 +507,24 @@
 				<string>21.0.0</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>x86_64</string>
+				<key>BundlePath</key>
+				<string>SimpleBCM.kext</string>
+				<key>Comment</key>
+				<string>SimpleBCM embedded stack</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/SimpleBCM</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+				<key>MinKernel</key>
+				<string>23.0.0</string>
+				<key>MaxKernel</key>
+				<string>25.99.99</string>
 			</dict>
 			<dict>
 				<key>Arch</key>
@@ -924,24 +888,7 @@
 			</dict>
 		</array>
 		<key>Block</key>
-		<array>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>Comment</key>
-				<string>Allow IOSkywalk Downgrade</string>
-				<key>Enabled</key>
-				<true/>
-				<key>Identifier</key>
-				<string>com.apple.iokit.IOSkywalkFamily</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string>23.0.0</string>
-				<key>Strategy</key>
-				<string>Exclude</string>
-			</dict>
-		</array>
+		<array/>
 		<key>Emulate</key>
 		<dict>
 			<key>Cpuid1Data</key>
@@ -1002,7 +949,7 @@
 			<key>AppleCpuPmCfgLock</key>
 			<false/>
 			<key>AppleXcpmCfgLock</key>
-			<true/>
+			<false/>
 			<key>AppleXcpmExtraMsrs</key>
 			<false/>
 			<key>AppleXcpmForceBoost</key>
@@ -1075,9 +1022,9 @@
 			<key>InstanceIdentifier</key>
 			<string></string>
 			<key>LauncherOption</key>
-			<string>Full</string>
+			<string>Disabled</string>
 			<key>LauncherPath</key>
-			<string>Default</string>
+			<string>\EFI\OC\OpenCore.efi</string>
 			<key>PickerAttributes</key>
 			<integer>17</integer>
 			<key>PickerAudioAssist</key>
@@ -1093,7 +1040,7 @@
 			<key>TakeoffDelay</key>
 			<integer>0</integer>
 			<key>Timeout</key>
-			<integer>3</integer>
+			<integer>10</integer>
 		</dict>
 		<key>Debug</key>
 		<dict>
@@ -1259,7 +1206,7 @@
 				<key>Comment</key>
 				<string>setup_var.efi 0.3.1, CFG Lock is CpuSetup:0x3E per a51mr2_biosdump.txt</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Flavour</key>
 				<string>Auto</string>
 				<key>FullNvramAccess</key>
@@ -1281,13 +1228,35 @@
 				<key>Comment</key>
 				<string>setup_var.efi 0.3.1, CFG Lock is CpuSetup:0x3E per a51mr2_biosdump.txt</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>Flavour</key>
 				<string>Auto</string>
 				<key>FullNvramAccess</key>
 				<true/>
 				<key>Name</key>
 				<string>Restore CFG Lock</string>
+				<key>Path</key>
+				<string>setup_var.efi</string>
+				<key>RealPath</key>
+				<true/>
+				<key>TextMode</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string>--reboot=auto SaSetup:0xF5 SaSetup:0xF6 SaSetup:0x132(2) CpuSetup:0x3E Setup(1):0x69F Setup(1):0x4A6 UsbSupport:0x2B UsbSupport:0x02 SaSetup:0xF9 SaSetup:0xF5=0x02 SaSetup:0xF6=0x03 CpuSetup:0x3E=0x00 Setup(1):0x69F=0x00 Setup(1):0x4A6=0x01 UsbSupport:0x2B=0x01 UsbSupport:0x02=0x01 SaSetup:0x132(2)=0x0C80 SaSetup:0xF5 SaSetup:0xF6 SaSetup:0x132(2) CpuSetup:0x3E Setup(1):0x69F Setup(1):0x4A6 UsbSupport:0x2B UsbSupport:0x02 SaSetup:0xF9</string>
+				<key>Auxiliary</key>
+				<false/>
+				<key>Comment</key>
+				<string>A51m-only: DVMT 64M/MAX, RAM max3200, CFG/TPM off, TB GPIO3 on, XHCI/EHCI handoff on. Reads first; VT-d unchanged.</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Automator</string>
+				<key>FullNvramAccess</key>
+				<true/>
+				<key>Name</key>
+				<string>Configure A51m Firmware</string>
 				<key>Path</key>
 				<string>setup_var.efi</string>
 				<key>RealPath</key>
@@ -1314,7 +1283,7 @@
 				AA==
 				</data>
 				<key>boot-args</key>
-				<string>agdpmod=pikera -amfipassbeta swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm -a51mbattime</string>
+				<string>agdpmod=pikera swd_panic=1 -iosd3v3 applbkl=0 alcverbs=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300 revpatch=sbvmm -a51mbattime -a51mbatmeta -a51mbatdell -rsnavi -a51mbatadapter</string>
 				<key>csr-active-config</key>
 				<data>
 				AwgAAA==
@@ -1579,6 +1548,8 @@
 				<false/>
 				<key>Path</key>
 				<string>OpenRuntime.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Arguments</key>
@@ -1591,6 +1562,8 @@
 				<false/>
 				<key>Path</key>
 				<string>HfsPlus.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Arguments</key>
@@ -1603,6 +1576,8 @@
 				<false/>
 				<key>Path</key>
 				<string>OpenCanopy.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Arguments</key>
@@ -1615,6 +1590,8 @@
 				<false/>
 				<key>Path</key>
 				<string>AudioDxe.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Arguments</key>
@@ -1627,6 +1604,8 @@
 				<false/>
 				<key>Path</key>
 				<string>OpenLinuxBoot.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>Arguments</key>
@@ -1639,6 +1618,8 @@
 				<false/>
 				<key>Path</key>
 				<string>ext4_x64.efi</string>
+				<key>HideVerbose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>Input</key>
