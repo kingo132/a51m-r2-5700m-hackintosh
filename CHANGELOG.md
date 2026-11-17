@@ -1,5 +1,173 @@
 # Changelog
 
+## Reconciled work scope — 2026-11-16
+
+The published EFI retains A51mR2Backlight 1.2.7; the local HDMI 1.2.10–1.2.15
+entries below describe separate development/deployment checkpoints, not binaries
+included in this release. Earlier staged/pending entries are historical steps;
+the 1.2.15 connected-session acceptance does not close lifecycle testing.
+The original SMCBatteryManager 1.3.8-a51m1 time/state repair is retained as
+history; the current packaged battery revision is a51m7.
+
+The upstream OCLP-free checkpoint records limited reference-machine acceptance
+with SimpleBCM/SimpleHDA. Migration instructions are not completed actions on
+another installation, nor was the live EFI or system changed by this merge.
+Official component versions and the retained older fallback bootstrap are
+listed in [release notes](docs/RELEASE.md); broader acceptance stays open.
+TobiiBridge's separate repository link remains in [README](README.md).
+
+## Unreleased — scoped HDMI response wait1.2.15 (connected app readback accepted)
+
+- Implement reviewed10ms native minimum for qualified synchronous HDMI reads,
+  retaining larger waits and restoring original caller metadata. Preserve
+  native DAL sequencing/errors, DP/eDP behavior and existing guards.
+- Add28 core restoration and28 owned-native sequencing/exclusion cases.
+  Existing protocol/concurrency suites and isolated Release/Debug/binary
+  checks pass. After user approval, verify complete local EFI/ESP incremental
+  rollback and all290 active payloads; replace only this KEXT executable/Info.
+  Config, app settings and other drivers unchanged. User controls restart;
+  After user restart, verify actual BetterDisplay brightness/contrast and
+  complete415-byte capabilities, with17 attributable valid replies and0
+  bus/frame errors. User screenshot confirms all four DDC checks pass.
+  Physical miniDP/reconnect/wake/long-uptime acceptance remains separate.
+
+
+## Unreleased — actual HDMI1.2.14 transport acceptance (app still open)
+
+- Verify real kernel Type2 reads for six controls and complete capabilities
+  with37/38-byte caller capacities at correct10ms waits. This is physical
+  acceptance of the shared-buffer/reader path, not complete app acceptance.
+- Isolate a current BetterDisplay service-name timing conversion mismatch.
+  Its configured10ms is not converted for this ATY service name; short-delay
+  physical requests fail while millisecond waits succeed. Prepare an unapplied
+  scoped native minimum-wait proposal. No new KEXT/EFI/app setting change.
+
+
+## Unreleased — shared-buffer HDMI repair1.2.14 (staged)
+
+- Implement reviewed pre-send command retention with reply-stage descriptor
+  revalidation; preserve strict scope ownership, native send/wait/preclear,
+  type2, errors and DP/eDP exclusions. Shared-buffer and negative regression
+  suites plus isolated Release/Debug/binary checks pass.
+- After user approval, verify fresh complete local EFI/ESP incremental rollback
+  and all290 active payloads. Replace only the backlight executable/Info;
+  config/other drivers unchanged. User controls restart. Actual new kernel
+  Type2, BetterDisplay and miniDP acceptance remain pending.
+
+
+## Unreleased — HDMI shared-buffer failure (diagnosed, repair proposed)
+
+- Boot-check1.2.13: physical HDMI qualification succeeds, but the reply-stage
+  classifier rereads the shared send/reply buffer after native DAL preclear.
+  The command is erased; real app requests still fall through without repair.
+- Reproduce all29 shared-buffer cases with the unchanged classifier; a local
+  retained-command prototype passes29 and rejects28 descriptor/snapshot
+  negatives. Its two-file source diff is unapplied. No new KEXT/EFI, config,
+  other-driver, service or restart change is performed. Actual repair remains
+  open pending review and live kernel/App/miniDP acceptance.
+
+## Unreleased — observed HDMI signal and capabilities correction (historical staging)
+
+- Boot-check1.2.12: code/ABI admission and TG hooks pass, but actual HDMI
+  requests remain rejected by the wrong signal constant16; the observed
+  native HDMI value is4. Withdraw the synthetic fixture assumption.
+- Prepare1.2.13 with independent signal/RGB regression and bounded standard
+  GetVCP/capabilities replies. Real Simple-transport replies validate the
+  production parser and native capacity clamp, not new live kernel hooks.
+  Candidate builds and owned native tests pass. After explicit user review,
+  stage only this KEXT executable/Info after verified full local EFI and ESP
+  incremental rollback. All290 files checked: config/other drivers unchanged.
+  No automatic restart or completed live DDC repair is claimed.
+
+
+## Unreleased — metadata-only framebuffer update compatibility
+
+- Diagnose a confirmed26.7.3 identity change rejecting unchanged native code
+  in the1.2.11 HDMI/TG guards. Prepare a local1.2.12 candidate that admits
+  complete supported code/layout contracts independently of UUID, retaining
+  header, function digest, symbol and actual-device/interface checks.
+- Strengthen TG admission to full native routines while preserving baseline
+  behavior.53 compatibility cases, native fixtures and Release/Debug pass.
+  Stage the reviewed candidate with verified full local/ESP incremental
+  rollback, changing only the backlight bundle and preserving config/other
+  payloads. No restart/live-success claim; arbitrary future private driver
+  changes still require compatibility work.
+
+## Unreleased — HDMI post-boot integration correction
+
+- Record1.2.10 as loaded but ineffective: actual HDMI queries never passed
+  qualification. Correct AmdLink/dc_link object handoff and scope the native
+  selected link/engine in the isolated1.2.11 build; add full native-entry
+  tests rather than supplying successful eligibility.
+- Stage the KEXT-only follow-up with verified full local and incremental ESP
+  rollback. Preserve config and other payloads. User restart and real HDMI/
+  miniDP acceptance remain pending; capabilities enumeration is still open.
+
+## Unreleased — local HDMI type-2 driver candidate
+
+- Stage the isolated HDMI-only build on the archived 1.2.7 brightness/TG
+  baseline after explicit deployment approval and two verified full EFI
+  backups. Replace only the backlight bundle and append its enable argument;
+  retain all other drivers/configuration. Await user restart and actual
+  readback/miniDP acceptance; do not claim the loaded system is repaired.
+- Implement a default-off fixed GetVCP type-2 reply repair in the local
+  A51mR2Backlight source. Preserve type 2 and native DAL sequencing; reuse the
+  native byte reader for one correctly addressed reply and validate its frame.
+  Scope it to authenticated RX 5700M HDMI brightness, volume and mute queries;
+  keep miniDP/eDP/MST and other commands native.
+- Release build and owned native-code/core tests pass. The isolated candidate
+  is staged in EFI; loaded candidate, boot/app readback and physical miniDP
+  regression are not yet established.
+  Keep source uncommitted for review and private evidence outside the repository.
+
+## Unreleased — connected HDMI configuration repair
+
+- Enable DDC only for the connected HDMI monitor in BetterDisplay after a
+  configuration backup. Its DDC setting was disabled. Normal app brightness
+  control passed a physical 38 -> 39 -> 38 test, with three checksum-valid
+  independent reads at every stage. No EFI/KEXT, volume, mode, service or
+  system restart change was needed.
+- Confirm HDMI audio playback under the existing NaviAudioFixup configuration
+  with actual user confirmation. No new audio patch was applied.
+- Keep native DDC/CI type-2 read compatibility open: Simple reads return valid
+  values on the same HDMI connection, but app direct readback still fails.
+  Automatic synchronization and reconnect/wake are not claimed complete.
+  Raw identities and configuration backups remain private.
+
+## Unreleased — local sensor updates
+
+- Radeon a51m2 is boot-verified for basic temperature, power, frequency and
+  cached telemetry. The invalid native GPU fan rows are hidden using iStat's
+  settings; hardware fan control is unchanged. Full wake/uptime acceptance is
+  separate from this basic telemetry check.
+- Correct the A51m battery a51m6 native adapter bridge in a51m7: use the fresh
+  attached total from Dell selector 3, with selector-6 AC/PSID validation.
+  The previous static 330 W export was not correct for two attached 240 W
+  supplies. No fixed wattage or rated voltage/current pair is fabricated.
+- Add opt-in A51m R2 WMAX read-only per-input rated-power telemetry. Publish a
+  validated pair only after stable two-input counts and agreement with the
+  exact fresh total snapshot. Ambiguous single-input/invalid/stale results
+  remain unavailable. No new daemon or GPU/charger control is introduced.
+- iStat receives the single total rating; independent port ratings are exposed
+  by the driver cache and local diagnostic reader, not two claimed iStat rows.
+- a51m7 is now boot-verified: correct loaded UUID/revision, native 480 W total
+  and fresh validated 240 + 240 W reports from the attached pair. Only the
+  battery executable changed within OC after two full verified backups. Real
+  iStat UI, plug/unplug and wake acceptance remain open. All changes
+  remain local and uncommitted for SourceTree review.
+
+
+### Subsequent local recovery and acceptance
+
+- Recover one peer Mac's missing ZeroTier return route using the existing
+  client's approved managed-address refresh. Preserve all four flags and
+  membership; add no service. SSH/AirPlay ports now connect in about 5 ms,
+  with 13 route/port checks passing over three minutes. Permanent macOS/ZeroTier
+  route compatibility and an actual new mirroring-session check remain open.
+- A normal-use 60-second trace resolves all 143 new software fences without
+  timeout or open handles; tracing state is restored exactly. This is a healthy
+  baseline, not a claim that prior wake/uptime stalls are repaired.
+
 ## 2026-11-15 — OCLP-free EFI and corrected acceptance scope
 
 - Replace separate legacy Skywalk/IO80211 Wi-Fi injection and AMFIPass with

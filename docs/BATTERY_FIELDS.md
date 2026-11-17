@@ -15,6 +15,17 @@ consumer UI needs separate acceptance. A cycle count is now reported, but no
 independent lifetime-count calibration is claimed. The current release keeps
 this distinction rather than filling missing fields with plausible numbers.
 
+## Read-only checkpoint recorded on 2026-11-15
+
+The deployed a51m7 driver now reports 21 cycles, real cached temperature,
+480 W total adapter rating and two validated 240 W input ratings. Current
+registry values are about 12.33 V and 0 mA on AC with charging paused; the
+pack reports 5,861 mAh remaining, 7,077 mAh full-charge and 7,895 mAh design.
+The two synthetic adapter/cell SMC metadata fields are omitted. These changes
+supersede the old 60 W / 16 V / zero-cycle observations below. They do not
+make rated watts measured consumption or establish complete battery health.
+See [current acceptance evidence and limits](UI_MON_ACCEPTANCE_20261115.md).
+
 ## Historical a51m1 audit — observations below are not current values
 
 The following historical audit checked then-current AppleSmartBattery values and the then-deployed
