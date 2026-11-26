@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-26 — Intel AX201 folder
+
+- Add `EFI-Intel/` beside the Broadcom `EFI/`. Tested on an Area-51m R2
+  (i9-10850K, RX 5700M) with macOS 26.7.3 (25G342) and SMBIOS iMac20,2.
+- Wi-Fi is Intel AX201 (`8086:06F0`, subsystem `1A56:1652`) through
+  AirportItlwm 2.4.0. Bluetooth is Intel USB `8087:0026` through
+  IntelBluetoothFirmware 2.5.3, IntelBTPatcher 2.5.3 and BlueToolFixup 2.7.2.
+- AirportItlwm and SimpleHDA in this folder load only on Darwin 25.0.0–25.99.99.
+  Platform serial, MLB, ROM and UUID are blank. Windows boot files and Dell
+  diagnostic logs are not included. The Broadcom `EFI/` is unchanged.
+
 ## Reconciled work scope — 2026-11-16
 
 The published EFI retains A51mR2Backlight 1.2.7; the local HDMI 1.2.10–1.2.15
