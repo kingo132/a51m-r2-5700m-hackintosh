@@ -5,6 +5,12 @@ EFI-injected Wi-Fi and audio on the original Apple system volume. Read
 [migration/rollback](OCLP_FREE.md) before using it with a previously
 root-patched installation. No additional boot manager is required.
 
+The component table below describes `EFI/`, the Broadcom BCM94352Z reference.
+`EFI-Intel/` is a separate macOS 26.7.3 folder for an Intel Wi-Fi 6 AX201
+(`8086:06F0`, subsystem `1A56:1652`) and Intel Bluetooth `8087:0026`. See the
+[Intel Wi-Fi folder](../README.md#intel-wi-fi-folder) note. Do not treat the
+Broadcom rows as the contents of `EFI-Intel/`.
+
 This is an identity-free template. Supply your own PlatformInfo locally.
 The public template omits the battery observer and restores only the previous
 public zero/absent Bluetooth-controller state; it never exports private identity.

@@ -13,6 +13,33 @@ locally and read the [privacy rules](docs/PRIVACY.md) before publishing anything
 The historical checklist below does not mean every current Tahoe sleep/wake,
 brightness or Universal Control issue has been resolved.
 
+## Intel Wi-Fi folder
+
+`EFI/` remains the Broadcom reference. That machine uses a BCM94352Z with
+SimpleBCM. `EFI-Intel/` is a separate OpenCore folder for an Intel wireless
+card and does not replace `EFI/`. Use only one of them on the EFI partition.
+
+`EFI-Intel/` was tested on an Alienware Area-51m R2 with an i9-10850K and
+Radeon RX 5700M, SMBIOS iMac20,2, running macOS 26.7.3 (25G342). OpenCore is
+1.0.8 (REL-108-2026-09-27).
+
+| Part | Hardware / build |
+| --- | --- |
+| Wi-Fi | Intel Wi-Fi 6 AX201, PCI `8086:06F0`, subsystem `1A56:1652` |
+| Bluetooth | Intel AX201 USB `8087:0026` |
+| Wireless kexts | AirportItlwm 2.4.0, IntelBluetoothFirmware 2.5.3, IntelBTPatcher 2.5.3, BlueToolFixup 2.7.2 |
+
+AirportItlwm and SimpleHDA in this folder are enabled only for Darwin
+25.0.0–25.99.99, so this copy is for macOS 26. It was tested on 26.7.3.
+It is not a claim that the same folder boots older releases. The included
+CPUFriend data comes from the tested i9-10850K. NVMeFix is enabled here; the
+Broadcom reference still ships it disabled.
+
+Platform serial, board serial, chassis serial, MLB, ROM and SystemUUID are
+blank. Fill in your own before everyday use. The Windows boot files and Dell
+diagnostic logs that sit beside OpenCore on a working ESP are not in this
+folder. `BOOT/RU.efi` is only the firmware setup tool.
+
 # ChangeLog
 
 ### 20261115 — OCLP-free reference EFI
